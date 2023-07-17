@@ -1,5 +1,5 @@
 import Image from 'next/image'
-
+// esto es una prueba
 export default function Home() {
     return (
         <main >
