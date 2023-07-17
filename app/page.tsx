@@ -1,9 +1,9 @@
-import Image from 'next/image'
-
+import Header from "@/components/header/Header";
+import Landing from "@/components/landing/LandingPage";
 export default function Landing() {
   return (
-    <div>
-      Soy la Landing
-    </div>
-  )
-}
+    <>
+      <Header />
+      <Landing />
+    </>
+  );
