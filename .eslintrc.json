@@ -1,3 +1,15 @@
 {
+  "rules": {
+    "quotes": ["error", "double"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "semi": ["error", "always"],
+    "space-before-function-paren":"off",
+    "no-undef": "off",
+    "react/jsx-curly-brace-presence": "off",
+    "comma-dangle": "off",
+    "@next/next/no-img-element": "off",
+    "no-unused-vars":"warn",
+    "camelcase": "off"
+  },
   "extends": ["./node_modules/standard/eslintrc.json", "next/core-web-vitals"]
 }
