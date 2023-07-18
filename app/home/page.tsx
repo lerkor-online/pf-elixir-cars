@@ -20,7 +20,7 @@ export default function Home() {
             <section className='flex flex-row justify-center items-center p-10'>
 
 
-                <a className='flex justify-center items-center p-4 m-2 w-96 bg-gray-100 border border-gray-200 box-border shadow-md rounded-md hover:border-yellow-600' href="">
+                <a className='flex justify-center items-center p-4 m-2 w-96 bg-gray-100 border border-gray-200 box-border shadow-md rounded-md hover:border-yellow-600' href="/categoria-producto/usados">
                     <div><Image
                         src="/Frame-851.svg"
                         alt="Elixir Logo"
@@ -34,7 +34,7 @@ export default function Home() {
                         <h4 className='leading-normal text-sm'>Comprar / Vender </h4>
                     </div>
                 </a>
-                <a className='flex justify-center items-center p-4 m-2 w-96 bg-gray-100 border border-gray-200 box-border shadow-md rounded-md hover:border-yellow-600' href="">
+                <a className='flex justify-center items-center p-4 m-2 w-96 bg-gray-100 border border-gray-200 box-border shadow-md rounded-md hover:border-yellow-600' href="/categoria-producto/0km">
                     <div><Image
                         src="/Frame-891.svg"
                         alt="Elixir Logo"

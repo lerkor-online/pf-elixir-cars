@@ -5,7 +5,7 @@ export default function Nav() {
 return (
     <main >
       <header id="landing-header" className="py-4 px-10 flex item-center fixed top-0 w-full justify-between bg-neutral-900 border-b-[3px] border-yellow-600 z-40">
-      <div>
+      <div><a href="/home">
             <Image
               src="/logo_elixir_cars.png"
               alt="Elixir Logo"
@@ -14,11 +14,12 @@ return (
               height={56}
               priority
             />
+            </a>
       </div>
             <nav className='flex flex-grow justify-center'>
               <ul className='flex text-sm [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:text-gray-50'>
-                <li><a href="">Usados Garantizados</a></li>
-                <li><a href="">0 KM</a></li>
+                <li><a href="/categoria-producto/usados">Usados Garantizados</a></li>
+                <li><a href="/categoria-producto/0km">0 KM</a></li>
                 <li><a href="">Vende tu Auto</a></li>
                 <li><a href="">Servicios</a></li>
                 <li><a href="">Nosotros</a></li>
