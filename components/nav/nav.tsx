@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import Boxgold from '../boxgold/boxgold'
+import Image from "next/image";
+import Boxgold from "../boxgold/boxgold";
 
 export default function Nav() {
 return (
@@ -34,5 +34,5 @@ return (
             <Boxgold/>
       </header>
     </main>
-  )
+  );
 }
