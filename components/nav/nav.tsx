@@ -22,8 +22,8 @@ return (
                 <li><a href="/categoria-producto/0km">0 KM</a></li>
                 <li><a href="">Vende tu Auto</a></li>
                 <li><a href="">Servicios</a></li>
-                <li><a href="">Nosotros</a></li>
-                <li><a href="">Reviews</a></li>
+                <li><a href="/about">Nosotros</a></li>
+                <li><a href="/reviews">Reviews</a></li>
               </ul>
             </nav>
             <nav>
