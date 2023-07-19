@@ -10,7 +10,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <section className="bg-gradient-to-r from-slate-800 via-slate-500 to-slate-100 flex  max-sm:flex-col ">
+      <section className=" flex flex-wrap  max-sm:flex-col ">
         <section className="flex-grow w-96 max-md:w-auto">
           <Carousel images={images} />
         </section>
@@ -53,7 +53,7 @@ const LandingPage = () => {
           </section>
         </article>
       </section>
-      <section className=" p-2 bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600">
+      <section className=" p-2 ">
         <Newsletter />
       </section>
     </>
