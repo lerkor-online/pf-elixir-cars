@@ -12,10 +12,12 @@ const Login: React.FC<login> = ({ setShowLogin }) => {
 
   return (
     <>
-      <div
-        className="fixed grid place-content-center bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden  bg-fixed z-10"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.70)" }}
-      >
+      <div className="fixed grid place-content-center bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden  bg-fixed z-10">
+        <div
+          onClick={onClose}
+          className="fixed grid place-content-center bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden  bg-fixed "
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.70)" }}
+        ></div>
         <SignIn afterSignInUrl="/home" />
 
         {/* <div className="z-10  rounded-lg bg-[rgb(235,171,43)]  p-10   ">
