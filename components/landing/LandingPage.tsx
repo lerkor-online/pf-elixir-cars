@@ -24,7 +24,7 @@ const LandingPage = () => {
           <section>
             <button
               type="button"
-              className="bg-[rgb(53,180,6)] hover:bg-[rgba(40,163,2,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full mb-4"
+              className="bg-[rgb(207,118,1)] hover:bg-[rgba(212,95,0,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full mb-4"
             >
               Comprar
             </button>

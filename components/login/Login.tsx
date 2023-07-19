@@ -1,5 +1,5 @@
 import React from "react";
-
+import { SignIn } from "@clerk/nextjs";
 interface login {
   setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -16,7 +16,8 @@ const Login: React.FC<login> = ({ setShowLogin }) => {
         className="fixed grid place-content-center bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden  bg-fixed z-10"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.70)" }}
       >
-        <div className="z-10  rounded-lg bg-[rgb(235,171,43)]  p-10   ">
+        <SignIn afterSignInUrl="/home" appearance={{}} />
+        {/* <div className="z-10  rounded-lg bg-[rgb(235,171,43)]  p-10   ">
           <form className="flex text-center">
             <section className="flex flex-col gap-5 p-3 ">
               <section className="flex max-lg:flex-col justify-between ">
@@ -71,7 +72,7 @@ const Login: React.FC<login> = ({ setShowLogin }) => {
               </section>
             </section>
           </form>
-        </div>
+        </div> */}
       </div>
     </>
   );

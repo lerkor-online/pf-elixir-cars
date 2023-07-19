@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Boxgold from "../boxgold/boxgold";
-
+import { UserButton } from "@clerk/nextjs";
 export default function Nav() {
   return (
     <main>
@@ -18,6 +18,7 @@ export default function Nav() {
             priority
           />
         </div>
+
         <nav className="flex flex-grow justify-center">
           <ul className="flex text-sm [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:text-gray-50">
             <li>
@@ -47,6 +48,9 @@ export default function Nav() {
             </li>
           </ul>
         </nav>
+        <div className="px-1">
+          <UserButton afterSignOutUrl="/" />
+        </div>
         <Boxgold />
       </header>
     </main>
