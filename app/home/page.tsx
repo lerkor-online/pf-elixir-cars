@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main>
-      <section className="bg-black h-[573px] w-screen text-center relative overflow-hidden">
+      <section className="bg-black h-[573px] text-center relative overflow-hidden">
         <header className="z-30 relative">
           <p className="text-white text-5xl drop-shadow pt-80">
             Si es un Blue Label lo encontras aquí.
