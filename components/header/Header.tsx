@@ -32,13 +32,15 @@ const Header: React.FC<header> = ({ onClickHandler }) => {
                 </p>
               </section>
               <section className="flex max-sm:flex-col justify-center gap-5">
+                <a href="/home">
                 <button
                   onClick={onClickHandler}
                   type="button"
                   className="bg-[rgb(207,142,43)] hover:bg-[rgba(207,131,7,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full "
-                >
+                  >
                   Ingresar
                 </button>
+                  </a>
                 <button
                   onClick={() => router.push("/sign-up")}
                   type="button"
