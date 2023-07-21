@@ -8,7 +8,7 @@ const Newsletter = () => {
             <div className="flex flex-wrap justify-center text-center lg:text-left">
               <div className="w-full shrink-0 grow-0 basis-auto md:px-6 xl:w-10/12">
                 <div className="grid items-center gap-x-6 lg:grid-cols-2">
-                  <div className="mb-10 lg:mb-0 text-white">
+                  <div className="mb-10 lg:mb-0">
                     <h2 className="text-2xl font-bold">
                       No te pierdas de nuestras novedades.
                       <br />

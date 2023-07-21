@@ -10,7 +10,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <section className="bg-gradient-to-r from-slate-800 via-slate-500 to-slate-100 flex  max-sm:flex-col ">
+      <section className=" flex flex-wrap  max-sm:flex-col ">
         <section className="flex-grow w-96 max-md:w-auto">
           <Carousel images={images} />
         </section>
@@ -24,7 +24,7 @@ const LandingPage = () => {
           <section>
             <button
               type="button"
-              className="bg-[rgb(53,180,6)] hover:bg-[rgba(40,163,2,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full mb-4"
+              className="bg-[rgb(207,118,1)] hover:bg-[rgba(212,95,0,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full mb-4"
             >
               Comprar
             </button>
@@ -53,7 +53,7 @@ const LandingPage = () => {
           </section>
         </article>
       </section>
-      <section className=" p-2 bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600">
+      <section className=" p-2 ">
         <Newsletter />
       </section>
     </>
