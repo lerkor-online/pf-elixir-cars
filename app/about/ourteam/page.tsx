@@ -32,7 +32,7 @@ function OurTeam() {
           </div>
 
           <div className="flex flex-wrap my-1 mx-0">
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
+            {/* <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
               <div className="h-full flex items-top border-gray-200 border p-2 rounded-lg transition duration-300 hover:shadow-md shadow-[#555555] hover:bg-[#FFD700]">
                 <div className="flex-grow max-w-fit sm:pl-2 sm:pt-2 ">
                   <Image
@@ -76,7 +76,7 @@ function OurTeam() {
                   </span>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
                   <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg transition duration-300 hover:shadow-md hover:bg-[#FFD700]">
                     <Image
@@ -107,7 +107,7 @@ function OurTeam() {
                 </div>
                 <div className="flex-grow sm:pl-4 pl-2">
                   <h2 className="title-font font-medium text-lg text-gray-900">
-                    Alejandro Cañon
+                    Don Alejandro
                   </h2>
 
                   <h3 className="text-gray-500 mb-3">Developer</h3>
@@ -115,7 +115,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/alecanonm"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -126,7 +126,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/alecanonm/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -161,7 +161,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/Angeltirado8"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -172,7 +172,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/angel-tirado-25509911a/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -207,7 +207,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/Cristianp24"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -218,7 +218,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/cristian-peralta-a1a229263/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -253,7 +253,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/Hengers3012"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -264,7 +264,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/hengers-rosario-05a169275/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -300,7 +300,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/edgartellom"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -311,7 +311,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/edgar-tello/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -339,7 +339,7 @@ function OurTeam() {
                 </div>
                 <div className="flex-grow sm:pl-4 pl-2">
                   <h2 className="title-font font-medium text-lg text-gray-900">
-                    Leandro Gaston
+                    Lerkor-dev
                   </h2>
 
                   <h3 className="text-gray-500 mb-3">Developer</h3>
@@ -347,7 +347,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/lerkor-online"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -358,7 +358,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/lerkor-dev/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -394,7 +394,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/wilialberth"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -405,7 +405,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/wilialberth/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -441,7 +441,7 @@ function OurTeam() {
                   <p className="mb-4">Description:</p>
 
                   <span className="inline-flex">
-                    <Link href={"https://github.com/"} target="black">
+                    <Link href={"https://github.com/Rodrigozanek"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
@@ -452,7 +452,7 @@ function OurTeam() {
                       </svg>
                     </Link>
 
-                    <Link href={"https://www.linkedin.com/"} target="black">
+                    <Link href={"https://www.linkedin.com/in/rodrigo-zanek-21623023b/"} target="black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="1em"
