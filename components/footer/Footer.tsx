@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col text-center">
-      <div className="widgets_wrapper bg-sky-500 text-white">
+    <footer>
+      <div className="widgets_wrapper bg-neutral-900 border-t-[3px] border-yellow-600 text-white">
         <div className="container mx-auto py-8 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="column one-fourth">
             <aside className="widget_text widget widget_custom_html">
@@ -104,7 +104,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="Redes_sociales">
-        <div className="widget_text widget widget_custom_html flex justify-center bg-sky-500 text-white border-t border-white border-opacity-25 border-2">
+        <div className="widget_text widget widget_custom_html flex justify-center bg-neutral-800 text-white border-t-[1px] border-b-[1px] border-yellow-600">
           <div className="column one">
             {/* <h2 className="text-lg font-semibold">Redes Sociales</h2> */}
             <ul className="mt-4 flex space-x-4">
@@ -139,7 +139,7 @@ const Footer = () => {
             <br />
           </div>
         </div>
-        <div className="text-center bg-sky-700 text-white">
+        <div className="text-center bg-neutral-900 text-white">
           © 2023 ELIXIR CARS S.A. Todos los derechos reservados.
         </div>
       </div>
