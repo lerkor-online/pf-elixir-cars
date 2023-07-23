@@ -9,7 +9,10 @@
     "comma-dangle": "off",
     "@next/next/no-img-element": "off",
     "no-unused-vars":"warn",
-    "camelcase": "off"
+    "camelcase": "off",
+    "react/self-closing-comp": "off",
+    "react/jsx-closing-tag-location": "off",
+    "react/jsx-key": "off"
   },
   "extends": ["./node_modules/standard/eslintrc.json", "next/core-web-vitals"]
 }
