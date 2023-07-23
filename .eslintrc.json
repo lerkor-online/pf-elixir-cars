@@ -11,7 +11,8 @@
     "no-unused-vars":"warn",
     "camelcase": "off",
     "react/self-closing-comp": "off",
-    "react/jsx-closing-tag-location": "off"
+    "react/jsx-closing-tag-location": "off",
+    "react/jsx-key": "off"
   },
   "extends": ["./node_modules/standard/eslintrc.json", "next/core-web-vitals"]
 }

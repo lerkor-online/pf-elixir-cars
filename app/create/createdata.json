@@ -6,15 +6,15 @@
     "models": [
       {
         "model": "Giulia - Berlina mediana o grande",
-        "años": ["2020", "2021", "2022", "2023"]
+        "años": ["2016", "2017", "2018", "2020", "2021", "2022", "2023"]
       },
       {
         "model": "Stelvio - 4x4, SUV o pickup",
-        "años": ["2020", "2021", "2022", "2023"]
+        "años": ["2016", "2017", "2018", "2020", "2021", "2022", "2023"]
       },
       {
         "model": "Tonale - 4x4, SUV o pickup",
-        "años": ["2020", "2021", "2022", "2023"]
+        "años": ["2016", "2017", "2018", "2020", "2021", "2022", "2023"]
       }
     ]
   },
@@ -24,16 +24,112 @@
     "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/03/2991/2a68329166a80bb8b77e539da792484e8690aa9f.jpeg",
     "models": [
       {
-        "model": "Giulia - Berlina mediana o grande",
-        "años": ["2021", "2022", "2023"]
+        "model": "A1 - Pequeño",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
       },
       {
-        "model": "Stelvio - 4x4, SUV o pickup",
-        "años": ["2020", "2022", "2023"]
+        "model": "A1 Allstreet - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
       },
       {
-        "model": "Tonale - 4x4, SUV o pickup",
-        "años": ["2020", "2021", "2023"]
+        "model": "A3 - Pequeño",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A3 - Descapotable o convertible",
+        "años": ["2016", "2017", "2018", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A4 - Berlina mediana o grande",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A4 - Familiar",
+        "años": ["2016", "2017", "2018", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A4 Allroad - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A5 - Berlina mediana o grande",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A5 - Descapotable o convertible",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A5 - Deportivo o coupé",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A6 - Berlina mediana o grande",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A6 - Familiar",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A6 - Allroad - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A7 - Deportivo o coupé",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A7 - Berlina mediana o grande",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "A8 - Berlina mediana o grande",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "e-tron GT - Berlina mediana o grande",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Q2 - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Q3 - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Q4 e-tron - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Q5 - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Q7 - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Q8 - Deportivo o coupé",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Q8 e-tron - 4x4, SUV o pickup",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "R8 - Deportivo o coupé",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "R8 - Descapotable o convertible",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "TT - Deportivo o coupé",
+        "años": ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
       }
     ]
   },
@@ -96,281 +192,1065 @@
   {
     "id": "006",
     "name": "FIAT",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/16/1099/e0ec01742940ccfcfbf3d745048a7814c6c61c08.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/16/1099/e0ec01742940ccfcfbf3d745048a7814c6c61c08.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "007",
     "name": "HONDA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/1858/d3e7a11affe00e94b45495f0e515f591dfb9d171.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/1858/d3e7a11affe00e94b45495f0e515f591dfb9d171.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "008",
     "name": "LEXUS",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/15/1178/047f2a062f449500db5c78d50f1a98ac4e43776f.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/15/1178/047f2a062f449500db5c78d50f1a98ac4e43776f.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "009",
     "name": "MAZDA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/02/2433/3d66ae0065494cb179685d6f9c02afb117a99ae6.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/02/2433/3d66ae0065494cb179685d6f9c02afb117a99ae6.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "010",
     "name": "MERCEDES-BENZ",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/05/2146/2ebd8c4bf6b58ad98218162227ee77edf42702f2.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/05/2146/2ebd8c4bf6b58ad98218162227ee77edf42702f2.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "011",
     "name": "MITSUBISHI",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1806/2d67e1f63214e05a358044eb8b82b1422d2a37cc.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1806/2d67e1f63214e05a358044eb8b82b1422d2a37cc.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "012",
     "name": "OPEL",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/11/1254/4ba20d7a4238b31967b271410f4bd7bc8d970f73.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/11/1254/4ba20d7a4238b31967b271410f4bd7bc8d970f73.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "013",
     "name": "RENAULT",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/05/1881/8fce58b2c1f96435763c032bc6578884802e37c4.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/05/1881/8fce58b2c1f96435763c032bc6578884802e37c4.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "014",
     "name": "SEAT",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/1533/7dc8b8bafee0091e7b49c63a14966173a6b6089d.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/1533/7dc8b8bafee0091e7b49c63a14966173a6b6089d.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "015",
     "name": "SUBARU",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1413/bda03511475bb5be206eda11daa94b2041b9fbc9.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1413/bda03511475bb5be206eda11daa94b2041b9fbc9.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "016",
     "name": "TOYOTA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2590/929cc8da00895a719287595d4a6c45520c113e7f.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2590/929cc8da00895a719287595d4a6c45520c113e7f.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "017",
     "name": "VOLKSWAGEN",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/1742/2bd1946d944148d47ad90e62384984572ff833fe.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/1742/2bd1946d944148d47ad90e62384984572ff833fe.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "018",
     "name": "VOLVO",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2041/6e4657133482ac72cbcd0bf3b4be767bec787c15.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2041/6e4657133482ac72cbcd0bf3b4be767bec787c15.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "019",
     "name": "ABARTH",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1753/b453e58d1f3a54e79fe837436c148ef7e423b176.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1753/b453e58d1f3a54e79fe837436c148ef7e423b176.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "020",
     "name": "MINI",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1510/08188883f60133a69a869cb80e0f1386868c6bbe.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1510/08188883f60133a69a869cb80e0f1386868c6bbe.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "021",
     "name": "DS",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2538/34b07abd878f62556fa32282d34f989b2b8508d0.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2538/34b07abd878f62556fa32282d34f989b2b8508d0.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "022",
     "name": "SUZUKI",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2067/9cc0a582ea8acccb70335b205f30323a6ab63412.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2067/9cc0a582ea8acccb70335b205f30323a6ab63412.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "023",
     "name": "HYUNDAI",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/10/1394/80b3a853ddef658cc941f108f545f9ccd0b11a5e.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/10/1394/80b3a853ddef658cc941f108f545f9ccd0b11a5e.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "024",
     "name": "SMART",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/14/1282/e1a395a4dc75dd02961e907e1df7aae327166c58.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/14/1282/e1a395a4dc75dd02961e907e1df7aae327166c58.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "025",
     "name": "DACIA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1092/7ce199a9845435a0722fe38bf6e4d3d0486e3500.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1092/7ce199a9845435a0722fe38bf6e4d3d0486e3500.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "026",
     "name": "JAGUAR",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2041/36cebdf2d2ea1346ef38fc1feacc31fd838b4216.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2041/36cebdf2d2ea1346ef38fc1feacc31fd838b4216.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "027",
     "name": "MASERATI",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/03/2090/f3773ba240d43d7b33360c6f8381215ffe971628.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/03/2090/f3773ba240d43d7b33360c6f8381215ffe971628.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "028",
     "name": "PORSCHE",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/12/1492/542facb81899f3b2c9ee7a43eedf0d14fb8d0bee.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/12/1492/542facb81899f3b2c9ee7a43eedf0d14fb8d0bee.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "029",
     "name": "ASTON MARTIN",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/15/1204/6699bf34e9286d4ae3f8361d3ce0ddb2e07bdbae.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/15/1204/6699bf34e9286d4ae3f8361d3ce0ddb2e07bdbae.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "030",
     "name": "BENTLEY",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2538/cc8bb26f9227cfa18b7184f29b09f01799788eec.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2538/cc8bb26f9227cfa18b7184f29b09f01799788eec.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "031",
     "name": "BYD",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/12/0996/705f112ba5f18c952f0d82c11eb06da91b7510eb.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/12/0996/705f112ba5f18c952f0d82c11eb06da91b7510eb.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "032",
     "name": "JEEP",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/11/1596/7ae8d4e26bf943f457a675ed8bb45c5522dc5c8d.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/11/1596/7ae8d4e26bf943f457a675ed8bb45c5522dc5c8d.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "033",
     "name": "LAND-ROVER",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/14/1309/811c2d5741e6d2c5a25ae3c69bd59f890f7295ca.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/14/1309/811c2d5741e6d2c5a25ae3c69bd59f890f7295ca.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "034",
     "name": "FERRARI",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/03/2355/303abb0d11d34b2130030999e9a6043d91a264cc.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/03/2355/303abb0d11d34b2130030999e9a6043d91a264cc.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "035",
     "name": "MORGAN",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2067/6b626dc7f6c6c1248abcc61ec355c6c683d07b4b.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/2067/6b626dc7f6c6c1248abcc61ec355c6c683d07b4b.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "036",
     "name": "LAMBORGHINI",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1779/dba4f7bac86aeec2338104b917d3f7080829afa9.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/09/1779/dba4f7bac86aeec2338104b917d3f7080829afa9.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "037",
     "name": "LOTUS",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1905/32bf45cb918d738b04854aa6f30ca6c8a779373c.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1905/32bf45cb918d738b04854aa6f30ca6c8a779373c.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "038",
     "name": "TESLA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/11/1102/d9df9ea56284ed0782427a0a891e012e5c6ae59c.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/11/1102/d9df9ea56284ed0782427a0a891e012e5c6ae59c.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "039",
     "name": "SKODA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2299/a264d2b9fdac4542f4e8a55dee8e2f7daf8e282c.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2299/a264d2b9fdac4542f4e8a55dee8e2f7daf8e282c.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "040",
     "name": "DODGE",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/05/1905/a3707e8e56c664061f12cd371b42b4daa46aee23.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/05/1905/a3707e8e56c664061f12cd371b42b4daa46aee23.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "041",
     "name": "MG",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/1812/deebc5001b613d1718c2d522c84020ceb5d6790b.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/06/1812/deebc5001b613d1718c2d522c84020ceb5d6790b.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "042",
     "name": "ISUZU",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/04/1738/868c286a362205f537845264e98b67de214d2706.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/04/1738/868c286a362205f537845264e98b67de214d2706.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "043",
     "name": "PEUGEOT",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2323/df2f9a2a695c2979d1c6d08ca916914e8ac12a0c.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/01/2323/df2f9a2a695c2979d1c6d08ca916914e8ac12a0c.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "044",
     "name": "FORD",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/03/2381/01075e6efa2080f207e73e7449d399f5e915aec7.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/03/2381/01075e6efa2080f207e73e7449d399f5e915aec7.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "045",
     "name": "ALPINE",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/02/1971/92e8315b2862f181bf4bfb4404910c00587b8a54.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/02/1971/92e8315b2862f181bf4bfb4404910c00587b8a54.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "046",
     "name": "CUPRA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/10/1145/cad4ff326b9248cfdbf406cec9c1343d0baa085d.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/10/1145/cad4ff326b9248cfdbf406cec9c1343d0baa085d.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "047",
     "name": "DFSK",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/02/2206/d7ad699be70c71796e1baba84a6feb853788b37f.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/02/2206/d7ad699be70c71796e1baba84a6feb853788b37f.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "048",
     "name": "DR",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/19/1312/0fabdc856dad3894f80699cbae46a70cb0a5d73f.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/19/1312/0fabdc856dad3894f80699cbae46a70cb0a5d73f.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "049",
     "name": "JIAYUAN",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/04/1997/7310fd6271fc925de4fa0697f1d688f1db1be78f.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/04/1997/7310fd6271fc925de4fa0697f1d688f1db1be78f.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "050",
     "name": "INVICTA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1115/fd4f487c4fa2531c89ea4859dc47cbe765b93dc5.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1115/fd4f487c4fa2531c89ea4859dc47cbe765b93dc5.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "051",
     "name": "NISSAN",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/12/1936/66b98e9533fb029e11303c94b5b83b701197c5dc.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/12/1936/66b98e9533fb029e11303c94b5b83b701197c5dc.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "052",
     "name": "KIA",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/10/1370/4df6d9fda193bb0da96fab87308ac7f10090255f.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/10/1370/4df6d9fda193bb0da96fab87308ac7f10090255f.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "053",
     "name": "SSANGYONG",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/1832/47400205194b4a43542cc322574b53e88302ee12.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/1832/47400205194b4a43542cc322574b53e88302ee12.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "054",
     "name": "LYNK & CO",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1045/fb92e43d973ca54e48714fa736044dc7d8f64f2b.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1045/fb92e43d973ca54e48714fa736044dc7d8f64f2b.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "055",
     "name": "SWM",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/04/2021/8c78068e114dad5e5dc74d2aabc797b8179fa9f6.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/04/2021/8c78068e114dad5e5dc74d2aabc797b8179fa9f6.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "056",
     "name": "LEVC",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/07/1626/b5968198c215528c41f2a0cf9ad02fea3977dede.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/07/1626/b5968198c215528c41f2a0cf9ad02fea3977dede.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "057",
     "name": "AIWAYS",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/07/1696/c1a834658e5fa37c8bf5902885f39d32e30d8282.jpg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/07/1696/c1a834658e5fa37c8bf5902885f39d32e30d8282.jpg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "058",
     "name": "MAXUS",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/2342/563e08bfe74d68a16d341629e006ea0af1c01208.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/08/2342/563e08bfe74d68a16d341629e006ea0af1c01208.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "059",
     "name": "EVO",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/17/1499/d2df4102ad7366d31c4640027d431b642a2f21e3.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/17/1499/d2df4102ad7366d31c4640027d431b642a2f21e3.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "060",
     "name": "POLESTAR",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/15/1655/ef09db693a8364434effba00f4940aebcd4b8ff1.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/15/1655/ef09db693a8364434effba00f4940aebcd4b8ff1.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   },
   {
     "id": "061",
     "name": "INEOS",
-    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1874/ce81b7772e453976d9005ded0c96da55940bb7ae.jpeg"
+    "logo": "https://images0.autocasion.com/unsafe/60x60/eurotax/13/1874/ce81b7772e453976d9005ded0c96da55940bb7ae.jpeg",
+    "models": [
+      {
+        "model": "Giulia - Berlina mediana o grande",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Stelvio - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      },
+      {
+        "model": "Tonale - 4x4, SUV o pickup",
+        "años": ["2020", "2021", "2022", "2023"]
+      }
+    ]
   }
 ]

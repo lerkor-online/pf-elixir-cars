@@ -1,4 +1,11 @@
-const Header = () => {
+import { useRouter } from "next/navigation";
+
+interface header {
+  onClickHandler: () => void;
+}
+
+const Header: React.FC<header> = ({ onClickHandler }) => {
+  const router = useRouter();
   return (
     <header>
       <div
@@ -27,6 +34,7 @@ const Header = () => {
               <section className="flex max-sm:flex-col justify-center gap-5">
                 <a href="/home">
                 <button
+                  onClick={onClickHandler}
                   type="button"
                   className="bg-[rgb(207,142,43)] hover:bg-[rgba(207,131,7,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full "
                   >
@@ -34,6 +42,7 @@ const Header = () => {
                 </button>
                   </a>
                 <button
+                  onClick={() => router.push("/sign-up")}
                   type="button"
                   className="bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.11)] active:scale-105 inline-block rounded border-2 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 max-sm:rounded-full  "
                 >
