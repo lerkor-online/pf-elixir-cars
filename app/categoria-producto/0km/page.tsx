@@ -1,3 +1,4 @@
+
 import React from 'react'; // Asegúrate de importar React si aún no lo has hecho
 /* import arrayCars from '@/carsapi.json'; */
 import Link from 'next/link';
@@ -30,16 +31,11 @@ export default async function Cerokm() {
       <section className='flex'>
         <div className='w-2/12 p-6'>
           <h3 className='text-xl font-bold p-2 bg-black rounded-md text-white text-center'>Filtro</h3>
-
           <li><div><input type="checkbox" />
             <label><a href="">En Stock Oportunidad</a>
             </label>
           </div>
           </li>
-
-
-
-
           <div>
           <div className='mt-6 ml-2 text-lg font-bold'>Destacado
           </div>
@@ -59,7 +55,7 @@ export default async function Cerokm() {
         <div className='bg-white shadow-md rounded-lg overflow-hidden w-[260px] ' key={auto.id}>
             <img
               src={auto.imageUrl}
-              className="dark:invert w-[260px] h-[206px]"
+              className=" w-[260px] h-[206px]"
               priority
               alt={auto.modelo}
                     />
