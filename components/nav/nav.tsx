@@ -25,7 +25,7 @@ export default function Nav() {
               <a href="">Usados Garantizados</a>
             </li>
             <li>
-              <a href="">0 KM</a>
+              <a href="/categoria-producto/0km">0 KM</a>
             </li>
             <li>
               <a href="">Vende tu Auto</a>
