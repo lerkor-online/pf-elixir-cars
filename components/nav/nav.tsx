@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Boxgold from "../boxgold/boxgold";
+import Boxgold from "@/components/boxgold/boxgold";
 import { UserButton } from "@clerk/nextjs";
 export default function Nav() {
   return (
@@ -48,10 +48,10 @@ export default function Nav() {
             </li>
           </ul>
         </nav>
+        <Boxgold />
         <div className="px-1">
           <UserButton afterSignOutUrl="/" />
         </div>
-        <Boxgold />
       </header>
     </main>
   );
