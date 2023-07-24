@@ -1,5 +1,6 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
+import axios from "axios";
 
 interface Brand {
   id: number;
@@ -29,6 +30,11 @@ interface DataSheet {
   puertas: number | undefined;
   baul: number | undefined;
   airbag: number | undefined;
+}
+
+interface CombinedData extends CarData, DataSheet {
+  brand: Brand;
+  model: Model;
 }
 
 interface AddCarsProps {
@@ -75,6 +81,31 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
   >([]);
 
   const [selectedState, setSelectedState] = useState("");
+
+  const combinedData: CombinedData = {
+    year: 0,
+    presentation: "",
+    price: 0,
+    mileage: 0,
+    fuel: "",
+    motor: "",
+    pasajeros: 0,
+    carroceria: "",
+    transmision: "",
+    traccion: "",
+    llantas: 0,
+    potencia: 0,
+    puertas: 0,
+    baul: 0,
+    airbag: 0,
+    brand: {
+      id: 0,
+      name: "",
+    },
+    model: {
+      name: "",
+    },
+  };
 
   const fetchBrands = async () => {
     try {
@@ -235,6 +266,16 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
   //   setStock((prevStock) => [...prevStock, newVehicle]);
   //   setNewVehicle("");
   // };
+  const handleSubmit = () => {
+    axios
+      .post("/api/backend-url", combinedData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   // const handleAddNewVehicle = () => {
   //   setStock([]);
@@ -590,116 +631,121 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                     </div>
                   )}
                 </div>
-                <div>
-                  {selectedModel && (
-                    <div>
-                      <h2>Otra información</h2>
-                      <div>
-                        <label htmlFor="motor">Motor:</label>
-                        <input
-                          type="text"
-                          id="motor"
-                          name="motor"
-                          onChange={handleChange}
-                          value="999"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="pasajeros">Pasajeros:</label>
-                        <input
-                          type="text"
-                          id="pasajeros"
-                          name="pasajeros"
-                          onChange={handleChange}
-                          value="5"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="carroceria">Carrocería:</label>
-                        <input
-                          type="text"
-                          id="carroceria"
-                          name="carroceria"
-                          onChange={handleChange}
-                          value="Hatch"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="transmision">Transmisión:</label>
-                        <input
-                          type="text"
-                          id="transmision"
-                          name="transmision"
-                          onChange={handleChange}
-                          value="manual"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="traccion">Tracción:</label>
-                        <input
-                          type="text"
-                          id="traccion"
-                          name="traccion"
-                          onChange={handleChange}
-                          value="4x2"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="llantas">Llantas:</label>
-                        <input
-                          type="text"
-                          id="llantas"
-                          name="llantas"
-                          onChange={handleChange}
-                          value="14"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="potencia">Potencia:</label>
-                        <input
-                          type="text"
-                          id="potencia"
-                          name="potencia"
-                          onChange={handleChange}
-                          value="68"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="puertas">Puertas:</label>
-                        <input
-                          type="text"
-                          id="puertas"
-                          name="puertas"
-                          onChange={handleChange}
-                          value="5"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="baul">Baúl:</label>
-                        <input
-                          type="text"
-                          id="baul"
-                          name="baul"
-                          onChange={handleChange}
-                          value="290"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="airbag">Airbag:</label>
-                        <input
-                          type="text"
-                          id="airbag"
-                          name="airbag"
-                          onChange={handleChange}
-                          value="4"
-                        />
+                <div className="w-10/12 mb-10">
+                  {newVehicleBrand && newVehicleModel && (
+                    <div className="flex flex-col items-center">
+                      <h2>FICHA TÉCNICA</h2>
+                      <div className="flex flex-wrap justify-evenly my-1 mx-20">
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="motor">Motor:</label>
+                          <input
+                            type="text"
+                            id="motor"
+                            name="motor"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="pasajeros">Pasajeros:</label>
+                          <input
+                            type="text"
+                            id="pasajeros"
+                            name="pasajeros"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="carroceria">Carrocería:</label>
+                          <input
+                            type="text"
+                            id="carroceria"
+                            name="carroceria"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="transmision">Transmisión:</label>
+                          <input
+                            type="text"
+                            id="transmision"
+                            name="transmision"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="traccion">Tracción:</label>
+                          <input
+                            type="text"
+                            id="traccion"
+                            name="traccion"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="llantas">Llantas:</label>
+                          <input
+                            type="text"
+                            id="llantas"
+                            name="llantas"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="potencia">Potencia:</label>
+                          <input
+                            type="text"
+                            id="potencia"
+                            name="potencia"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="puertas">Puertas:</label>
+                          <input
+                            type="text"
+                            id="puertas"
+                            name="puertas"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="baul">Baúl:</label>
+                          <input
+                            type="text"
+                            id="baul"
+                            name="baul"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
+                        <div className="flex flex-col mt-2 mx-2">
+                          <label htmlFor="airbag">Airbag:</label>
+                          <input
+                            type="text"
+                            id="airbag"
+                            name="airbag"
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                          />
+                        </div>
                       </div>
                     </div>
                   )}
                 </div>
               </div>
             </form>
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg transition duration-300 hover:shadow-md shadow-[#555555] hover:text-gray-900 hover:bg-[#FFD700]">
+            <button
+              className="bg-blue-500 text-white py-2 px-4 mb-10 rounded-lg transition duration-300 hover:shadow-md shadow-[#555555] hover:text-gray-900 hover:bg-[#FFD700]"
+              onClick={handleSubmit}
+            >
               AÑADIR VEHICULO
             </button>
           </div>
