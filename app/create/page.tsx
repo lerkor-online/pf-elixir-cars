@@ -2,51 +2,85 @@
 import React, { ChangeEvent, useState } from "react";
 import axios from "axios";
 
+// interface Brand {
+//   id: number;
+//   name: string;
+// }
+
+// interface Model {
+//   name: string;
+// }
+
+// interface CarData {
+//   year: number;
+//   imageUrl: Array<string> | undefined;
+//   presentation: string | undefined;
+//   price: number | undefined;
+//   mileage: number | undefined;
+//   fuel: string | undefined;
+// }
+
+// interface DataSheet {
+//   motor: string | undefined;
+//   pasajeros: number | undefined;
+//   carroceria: string | undefined;
+//   transmision: string | undefined;
+//   traccion: string | undefined;
+//   llantas: number | undefined;
+//   potencia: number | undefined;
+//   puertas: number | undefined;
+//   baul: number | undefined;
+//   airbag: number | undefined;
+// }
+
+// interface CombinedData extends CarData, DataSheet {
+//   brand: Brand;
+//   model: Model;
+// }
+
+// interface AddCarsProps {
+//   brands?: Brand[];
+// }
+interface FichaTecnica {
+  motor: string;
+  pasajeros: string;
+  carroceria: string;
+  transmision: string;
+  traccion: string;
+  llantas: string;
+  potencia: number;
+  puertas: number;
+  baul: string;
+  airbag: string;
+}
+
 interface Brand {
+  name: string;
+}
+
+interface CarModel {
+  name: string;
+}
+
+interface FormValues {
   id: number;
-  name: string;
-}
-
-interface Model {
-  name: string;
-}
-
-interface CarData {
+  brandId: number;
+  carModelId: number;
+  presentacion: string;
+  precio: number;
+  estado: string;
   year: number;
-  imageUrl: string | undefined;
-  presentation: string | undefined;
-  price: number | undefined;
-  mileage: number | undefined;
-  fuel: string | undefined;
-}
-
-interface DataSheet {
-  motor: string | undefined;
-  pasajeros: number | undefined;
-  carroceria: string | undefined;
-  transmision: string | undefined;
-  traccion: string | undefined;
-  llantas: number | undefined;
-  potencia: number | undefined;
-  puertas: number | undefined;
-  baul: number | undefined;
-  airbag: number | undefined;
-}
-
-interface CombinedData extends CarData, DataSheet {
+  imageUrl: string[];
+  kilometraje: number;
+  combustible: string;
+  fichaTecnica: FichaTecnica;
   brand: Brand;
-  model: Model;
+  carModel: CarModel;
 }
-
-interface AddCarsProps {
-  brands?: Brand[];
-}
-
-const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
-  const [brandList, setBrandList] = useState(brands);
-  const [modelList, setModelList] = useState<Model[]>([]);
-  const [carData, setCarData] = useState<CarData[]>([]);
-  const [dataSheet, setDataSheet] = useState<DataSheet[]>([]);
+const AddCars: React.FC<FormValues> = ({ brand }) => {
+  const [brandList, setBrandList] = useState(brand);
+  const [modelList, setModelList] = useState<CarModel[]>([]);
+  const [dataSheet, setDataSheet] = useState<FichaTecnica[]>([]);
 
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
@@ -60,7 +94,7 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
   const [showAddBrandInput, setShowAddBrandInput] = useState(false);
   const [showAddModelInput, setShowAddModelInput] = useState(false);
   const [showAddYearInput, setShowAddYearInput] = useState(false);
-  const [showDataSheet, setShowshowDataSheet] = useState(false);
+  const [showDataSheet, setShowDataSheet] = useState(false);
 
   const [activeTab, setActiveTab] = useState<"stock" | "addVehicle">("stock");
 
@@ -83,32 +117,57 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
 
   const [selectedState, setSelectedState] = useState("");
 
-  const [combinedData, setCombinedData] = useState<CombinedData>({
+  const [formData, setFormData] = useState<FormValues>({
+    id: 0,
+    brandId: 0,
+    carModelId: 0,
+    presentacion: "",
+    precio: 0,
+    estado: "",
     year: 0,
-    imageUrl: undefined,
-    presentation: undefined,
-    price: undefined,
-    mileage: undefined,
-    fuel: undefined,
-    motor: undefined,
-    pasajeros: undefined,
-    carroceria: undefined,
-    transmision: undefined,
-    traccion: undefined,
-    llantas: undefined,
-    potencia: undefined,
-    puertas: undefined,
-    baul: undefined,
-    airbag: undefined,
+    imageUrl: [],
+    kilometraje: 0,
+    combustible: "",
+    fichaTecnica: {
+      motor: "",
+      pasajeros: "",
+      carroceria: "",
+      transmision: "",
+      traccion: "",
+      llantas: "",
+      potencia: 0,
+      puertas: 0,
+      baul: "",
+      airbag: "",
+    },
     brand: {
-      id: 0,
       name: "",
     },
-    model: {
+    carModel: {
       name: "",
     },
   });
-
+  const updateCombinedData = (
+    selectedBrand: string,
+    selectedModel: string,
+    selectedYear: string,
+    selectedState: string,
+    otherData: Partial<FormValues>
+  ) => {
+    // setCombinedData((prevCombinedData) => ({
+    //   ...prevCombinedData,
+    //   brand: {
+    //     id: 0,
+    //     name: selectedBrand,
+    //   },
+    //   model: {
+    //     name: selectedModel,
+    //   },
+    //   year: selectedYear,
+    //   state: selectedState,
+    //   ...otherData,
+    // }));
+  };
   const fetchBrands = async () => {
     try {
       const response = await fetch("http://localhost:3001/brands", {
@@ -167,7 +226,7 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
   //   }
   // };
 
-  if (!brands) {
+  if (!brand) {
     fetchBrands();
   }
 
@@ -196,6 +255,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
     setSelectedYear("");
 
     fetchModels(selectedBrand);
+
+    // updateCombinedData(selectedBrand, "", "", "", {});
   };
 
   const handleModelSelection = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -225,7 +286,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
 
     setSelectedYear("");
 
-    // fetchYears(selectedBrand, selectedModel);
+    // fetchYears(selectedBrand, selectedModel)
+    // updateCombinedData("", selectedModel, "", "", {});
   };
 
   const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -243,18 +305,38 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
     console.log(e.target.value);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    console.log(name, value);
-
-    setCombinedData((prevCombinedData) => ({
-      ...prevCombinedData,
-      [name]: value,
+  const handleChangePuerta = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        puertas: Number(value),
+      },
     }));
-
-    const selectedValue = value;
-    setSelectedModel(selectedValue);
-    setShowshowDataSheet(selectedValue !== "");
+  };
+  const handleChangePotencia = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        potencia: Number(value),
+      },
+    }));
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // const { name, value } = e.target;
+    // console.log(name, value);
+    // setFormData((prevFormData) => ({
+    //   ...prevFormData,
+    //   [formData.fichaTecnica.puertas]: value,
+    // }));
+    // const selectedValue = value;
+    // setSelectedModel(selectedValue);
+    // setShowDataSheet(selectedValue !== "");
   };
 
   const handleCancelAddBrand = () => {
@@ -262,7 +344,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
     setShowAddModelInput(false);
     setNewBrand("");
     setSelectedState("");
-    setNewVehicleBrand("");
+    // setNewVehicleBrand("");
+    // updateCombinedData("", "", "", "", {});
   };
 
   const handleCancelAddModel = () => {
@@ -270,31 +353,33 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
     setNewModel("");
     setSelectedState("");
     setNewVehicleModel("");
+    // updateCombinedData("", "", "", "", {});
   };
 
   const handleCancelAddYear = () => {
     setShowAddYearInput(false);
     setNewYear("");
+    // updateCombinedData("", "", "", "", {});
   };
 
   const handleInventorySubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(e.target);
 
-    const jsonData = JSON.stringify(combinedData);
+    // const jsonData = JSON.stringify(combinedData);
 
-    axios
-      .post("http://localhost:3001/cars?stock=value", jsonData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // axios
+    //   .post("http://localhost:3001/cars?stock=value", jsonData, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
     // Envío el formulario de "Añadir al inventario"
     console.log("Marca seleccionada para el inventario:", inventoryBrand);
     console.log("Modelo seleccionado para el inventario:", inventoryModel);
@@ -304,8 +389,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
     e.preventDefault();
     console.log(e.target);
 
-    const jsonData = JSON.stringify(combinedData);
-    console.log(combinedData);
+    const jsonData = JSON.stringify(formData);
+    console.log(formData);
     // axios
     //   .post("http://localhost:3001/cars", jsonData, {
     //     headers: {
@@ -412,8 +497,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                     <option className="m-1" disabled value="">
                       Seleccione una Marca
                     </option>
-                    {brandList?.length ? (
-                      brandList?.map((brand) => (
+                    {Array.isArray(brandList) && brandList.length > 0 ? (
+                      brandList.map((brand) => (
                         <option key={brand.id} value={brand.name}>
                           {brand.name}
                         </option>
@@ -481,8 +566,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                       <option className="m-1 " value="">
                         Selecciona el Año
                       </option>
-                      {Array.isArray(carData) &&
-                        carData.map((element, index) => (
+                      {Array.isArray(formData) &&
+                        formData.map((element, index) => (
                           <option key={index} value={element.year}>
                             {element.year}
                           </option>
@@ -528,7 +613,7 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
             </div>
           </form>
         )}
-
+        {/* ------------------------------------------------------------------------------------------------------------------------------------------------------- */}
         {activeTab === "addVehicle" && (
           <div className="flex flex-col items-center">
             <h2 className="text-2xl font-bold mb-2">AÑADE UN NUEVO VEHÍCULO</h2>
@@ -565,8 +650,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                         <option disabled value="">
                           Selecciona una marca
                         </option>
-                        {brandList?.length ? (
-                          brandList?.map((brand) => (
+                        {Array.isArray(brandList) && brandList.length > 0 ? (
+                          brandList.map((brand) => (
                             <option key={brand.id} value={brand.name}>
                               {brand.name}
                             </option>
@@ -657,8 +742,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                           <option className="m-1 " value="">
                             Selecciona el Año
                           </option>
-                          {Array.isArray(carData) &&
-                            carData.map((element, index) => (
+                          {Array.isArray(formData) &&
+                            formData.map((element, index) => (
                               <option key={index} value={element.year}>
                                 {element.year}
                               </option>
@@ -722,7 +807,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                           <div className="flex flex-col mt-2 mx-2">
                             <label htmlFor="kilometraje">Kilometraje:</label>
                             <input
-                              type="text"
+                              type="number"
+                              min={0}
                               id="kilometraje"
                               onChange={handleChange}
                               placeholder="Kilometraje"
@@ -744,11 +830,11 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                     )}
                   </div>
 
-                  <div className="w-10/12 mb-10">
+                  <div className="p-8 w-full justify-center">
                     {newVehicleBrand && newVehicleModel && (
                       <div className="flex flex-col items-center">
                         <h2>FICHA TÉCNICA</h2>
-                        <div className="flex flex-wrap justify-evenly my-1 mx-20">
+                        <div className="flex flex-wrap justify-evently my-1 mx-20">
                           <div className="flex flex-col mt-2 mx-2">
                             <label htmlFor="motor">Motor:</label>
                             <input
@@ -811,7 +897,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                               type="number"
                               min={0}
                               id="potencia"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.potencia.toString()}
+                              onChange={handleChangePotencia}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -821,7 +908,8 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
                               type="number"
                               min={0}
                               id="puertas"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.puertas.toString()}
+                              onChange={handleChangePuerta}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
