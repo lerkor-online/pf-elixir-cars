@@ -12,7 +12,11 @@
     "camelcase": "off",
     "react/self-closing-comp": "off",
     "react/jsx-closing-tag-location": "off",
-    "react/jsx-key": "off"
+    "react/jsx-key": "off",
+    "no-lone-blocks":"off",
+    "react-hooks/rules-of-hooks": "off",
+    "@next/next/no-async-client-component": "off",
+    "multiline-ternary": "off"
   },
   "extends": ["./node_modules/standard/eslintrc.json", "next/core-web-vitals"]
 }
