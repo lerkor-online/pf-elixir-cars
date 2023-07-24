@@ -310,6 +310,7 @@ const AddCars: React.FC<AddCarsProps> = ({ brands }) => {
             setInventoryModelList([]);
             handleCancelAddBrand();
             handleCancelAddModel();
+            handleCancelAddYear();
           }}
         >
           Añadir al Inventario
