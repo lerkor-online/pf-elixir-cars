@@ -31,6 +31,9 @@ export default function Nav() {
               <a href="">Vende tu Auto</a>
             </li>
             <li>
+              <a href="/create">Añadir Auto</a>
+            </li>
+            <li>
               <a href="">Servicios</a>
             </li>
             <li>

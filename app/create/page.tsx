@@ -42,16 +42,16 @@ import axios from "axios";
 //   brands?: Brand[];
 // }
 interface FichaTecnica {
-  motor: string;
-  pasajeros: string;
+  motor: number;
+  pasajeros: number;
   carroceria: string;
   transmision: string;
   traccion: string;
-  llantas: string;
+  llantas: number;
   potencia: number;
   puertas: number;
-  baul: string;
-  airbag: string;
+  baul: number;
+  airbag: number;
 }
 
 interface Brand {
@@ -80,10 +80,10 @@ interface FormValues {
 const AddCars: React.FC<FormValues> = ({ brand }) => {
   const [brandList, setBrandList] = useState(brand);
   const [modelList, setModelList] = useState<CarModel[]>([]);
-  const [dataSheet, setDataSheet] = useState<FichaTecnica[]>([]);
+  // const [dataSheet, setDataSheet] = useState<FichaTecnica[]>([]);
 
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
+  // const [selectedModel, setSelectedModel] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
   const [newBrand, setNewBrand] = useState("");
@@ -94,7 +94,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   const [showAddBrandInput, setShowAddBrandInput] = useState(false);
   const [showAddModelInput, setShowAddModelInput] = useState(false);
   const [showAddYearInput, setShowAddYearInput] = useState(false);
-  const [showDataSheet, setShowDataSheet] = useState(false);
+  // const [showDataSheet, setShowDataSheet] = useState(false);
 
   const [activeTab, setActiveTab] = useState<"stock" | "addVehicle">("stock");
 
@@ -129,16 +129,16 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     kilometraje: 0,
     combustible: "",
     fichaTecnica: {
-      motor: "",
-      pasajeros: "",
+      motor: 0,
+      pasajeros: 0,
       carroceria: "",
       transmision: "",
       traccion: "",
-      llantas: "",
+      llantas: 0,
       potencia: 0,
       puertas: 0,
-      baul: "",
-      airbag: "",
+      baul: 0,
+      airbag: 0,
     },
     brand: {
       name: "",
@@ -147,27 +147,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       name: "",
     },
   });
-  const updateCombinedData = (
-    selectedBrand: string,
-    selectedModel: string,
-    selectedYear: string,
-    selectedState: string,
-    otherData: Partial<FormValues>
-  ) => {
-    // setCombinedData((prevCombinedData) => ({
-    //   ...prevCombinedData,
-    //   brand: {
-    //     id: 0,
-    //     name: selectedBrand,
-    //   },
-    //   model: {
-    //     name: selectedModel,
-    //   },
-    //   year: selectedYear,
-    //   state: selectedState,
-    //   ...otherData,
-    // }));
-  };
+
   const fetchBrands = async () => {
     try {
       const response = await fetch("http://localhost:3001/brands", {
@@ -238,6 +218,12 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     //   setNewBrand("add");
     //   return;
     // }
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      brand: {
+        name: selectedBrand,
+      },
+    }));
 
     if (selectedBrand === "add") {
       setShowAddBrandInput(true);
@@ -276,35 +262,114 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     }
 
     const { value } = e.target;
+
     if (value !== "") {
       setShowAddYearInput(true);
     } else {
       setShowAddYearInput(false);
     }
+
     setInventoryModel(selectedModel);
     setNewVehicleModel(selectedModel);
 
     setSelectedYear("");
 
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      carModel: {
+        name: selectedModel,
+      },
+    }));
     // fetchYears(selectedBrand, selectedModel)
     // updateCombinedData("", selectedModel, "", "", {});
   };
 
   const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedYear(e.target.value);
-    console.log(e.target.value);
+    const selectedValue = e.target.value;
+    console.log(selectedValue);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      year: Number(selectedValue),
+    }));
   };
 
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedValue = e.target.value;
     console.log(selectedValue);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      year: Number(selectedValue),
+    }));
+
     setNewYear(selectedValue);
   };
+
   const handleStateSelection = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedState(e.target.value);
+    const selectedValue = e.target.value;
+    setSelectedState(selectedValue);
     console.log(e.target.value);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      estado: selectedValue,
+    }));
   };
 
+  const handleChangePresentacion = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      presentacion: value,
+    }));
+  };
+  const handleChangePrecio = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      precio: Number(value),
+    }));
+  };
+
+  const handleChangeKilometraje = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      kilometraje: Number(value),
+    }));
+  };
+
+  const handleChangeCombustible = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      combustible: value,
+    }));
+  };
+
+  const handleChangeMotor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        motor: Number(value),
+      },
+    }));
+  };
+  const handleChangePasajeros = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        pasajeros: Number(value),
+      },
+    }));
+  };
   const handleChangePuerta = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     console.log(value);
@@ -313,6 +378,50 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
         puertas: Number(value),
+      },
+    }));
+  };
+  const handleChangeCarroceria = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        carroceria: value,
+      },
+    }));
+  };
+  const handleChangeTransmision = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        transmision: value,
+      },
+    }));
+  };
+  const handleChangeLlantas = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        llantas: Number(value),
+      },
+    }));
+  };
+  const handleChangeTraccion = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        traccion: value,
       },
     }));
   };
@@ -327,16 +436,27 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       },
     }));
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // const { name, value } = e.target;
-    // console.log(name, value);
-    // setFormData((prevFormData) => ({
-    //   ...prevFormData,
-    //   [formData.fichaTecnica.puertas]: value,
-    // }));
-    // const selectedValue = value;
-    // setSelectedModel(selectedValue);
-    // setShowDataSheet(selectedValue !== "");
+  const handleChangeBaul = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        baul: Number(value),
+      },
+    }));
+  };
+  const handleChangeAirbag = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    console.log(value);
+    setFormData((prevFormValues) => ({
+      ...prevFormValues,
+      fichaTecnica: {
+        ...prevFormValues.fichaTecnica,
+        airbag: Number(value),
+      },
+    }));
   };
 
   const handleCancelAddBrand = () => {
@@ -616,7 +736,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
         {/* ------------------------------------------------------------------------------------------------------------------------------------------------------- */}
         {activeTab === "addVehicle" && (
           <div className="flex flex-col items-center">
-            <h2 className="text-2xl font-bold mb-2">AÑADE UN NUEVO VEHÍCULO</h2>
+            <h2 className="text-2xl font-bold mb-2">PUBLICA TU AUTO</h2>
             <form
               onSubmit={handleNewVehicleSubmit}
               className="flex flex-row m-auto w-fit"
@@ -788,7 +908,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                             <input
                               type="text"
                               id="presentacion"
-                              onChange={handleChange}
+                              name={formData.presentacion}
+                              onChange={handleChangePresentacion}
                               placeholder="Presentación"
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
@@ -799,7 +920,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               type="number"
                               min={0}
                               id="precio"
-                              onChange={handleChange}
+                              name={formData.precio.toString()}
+                              onChange={handleChangePrecio}
                               placeholder="Precio"
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
@@ -810,7 +932,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               type="number"
                               min={0}
                               id="kilometraje"
-                              onChange={handleChange}
+                              name={formData.kilometraje.toString()}
+                              onChange={handleChangeKilometraje}
                               placeholder="Kilometraje"
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
@@ -820,7 +943,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                             <input
                               type="text"
                               id="combustible"
-                              onChange={handleChange}
+                              name={formData.combustible}
+                              onChange={handleChangeCombustible}
                               placeholder="Combustible"
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
@@ -840,7 +964,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                             <input
                               type="text"
                               id="motor"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.motor.toString()}
+                              onChange={handleChangeMotor}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -850,7 +975,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               type="number"
                               min={0}
                               id="pasajeros"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.pasajeros.toString()}
+                              onChange={handleChangePasajeros}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -859,7 +985,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                             <input
                               type="text"
                               id="carroceria"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.carroceria.toString()}
+                              onChange={handleChangeCarroceria}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -868,7 +995,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                             <input
                               type="text"
                               id="transmision"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.transmision.toString()}
+                              onChange={handleChangeTransmision}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -877,7 +1005,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                             <input
                               type="text"
                               id="traccion"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.traccion.toString()}
+                              onChange={handleChangeTraccion}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -887,7 +1016,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               type="number"
                               min={0}
                               id="llantas"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.llantas.toString()}
+                              onChange={handleChangeLlantas}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -919,7 +1049,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               type="number"
                               min={0}
                               id="baul"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.baul.toString()}
+                              onChange={handleChangeBaul}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -929,7 +1060,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               type="number"
                               min={0}
                               id="airbag"
-                              onChange={handleChange}
+                              name={formData.fichaTecnica.airbag.toString()}
+                              onChange={handleChangeAirbag}
                               className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
                             />
                           </div>
@@ -944,7 +1076,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                     className="bg-blue-500 text-white py-2 px-4 mb-10 rounded-lg transition duration-300 hover:shadow-md shadow-[#555555] hover:text-gray-900 hover:bg-[#FFD700]"
                     type="submit"
                   >
-                    AÑADIR VEHICULO
+                    PUBLISH
                   </button>
                 </div>
               </div>
