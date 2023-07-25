@@ -1,7 +1,6 @@
 "use client";
 import React, { ChangeEvent, useState, useLayoutEffect, useRef } from "react";
 import axios from "axios";
-import Image from "next/image";
 
 interface FichaTecnica {
   motor: number;
@@ -1235,13 +1234,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                             </div>
                           )}
                           {isImageUrlValid && formData.imageUrl && (
-                            <div className="cover">
-                              <Image
-                                src={formData.imageUrl[0]}
-                                width={200}
-                                height={200}
-                                alt="Imagen"
-                              />
+                            <div className="">
+                              <img src={formData.imageUrl[0]} alt="Imagen" />
                             </div>
                           )}
                         </div>{" "}
