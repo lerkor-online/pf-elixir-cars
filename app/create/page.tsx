@@ -1,46 +1,8 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useLayoutEffect, useRef } from "react";
 import axios from "axios";
+import Image from "next/image";
 
-// interface Brand {
-//   id: number;
-//   name: string;
-// }
-
-// interface Model {
-//   name: string;
-// }
-
-// interface CarData {
-//   year: number;
-//   imageUrl: Array<string> | undefined;
-//   presentation: string | undefined;
-//   price: number | undefined;
-//   mileage: number | undefined;
-//   fuel: string | undefined;
-// }
-
-// interface DataSheet {
-//   motor: string | undefined;
-//   pasajeros: number | undefined;
-//   carroceria: string | undefined;
-//   transmision: string | undefined;
-//   traccion: string | undefined;
-//   llantas: number | undefined;
-//   potencia: number | undefined;
-//   puertas: number | undefined;
-//   baul: number | undefined;
-//   airbag: number | undefined;
-// }
-
-// interface CombinedData extends CarData, DataSheet {
-//   brand: Brand;
-//   model: Model;
-// }
-
-// interface AddCarsProps {
-//   brands?: Brand[];
-// }
 interface FichaTecnica {
   motor: number;
   pasajeros: number;
@@ -80,10 +42,8 @@ interface FormValues {
 const AddCars: React.FC<FormValues> = ({ brand }) => {
   const [brandList, setBrandList] = useState(brand);
   const [modelList, setModelList] = useState<CarModel[]>([]);
-  // const [dataSheet, setDataSheet] = useState<FichaTecnica[]>([]);
 
   const [selectedBrand, setSelectedBrand] = useState("");
-  // const [selectedModel, setSelectedModel] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
   const [newBrand, setNewBrand] = useState("");
@@ -91,15 +51,12 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   const [newYear, setNewYear] = useState("");
 
   const [isAddingBrand] = useState(false);
+
   const [showAddBrandInput, setShowAddBrandInput] = useState(false);
   const [showAddModelInput, setShowAddModelInput] = useState(false);
   const [showAddYearInput, setShowAddYearInput] = useState(false);
-  // const [showDataSheet, setShowDataSheet] = useState(false);
 
   const [activeTab, setActiveTab] = useState<"stock" | "addVehicle">("stock");
-
-  // const [stock, setStock] = useState<string[]>([]);
-  // const [newVehicle, setNewVehicle] = useState<string>("");
 
   // Variables para "Añadir al inventario"
   const [inventoryBrand, setInventoryBrand] = useState("");
@@ -148,6 +105,123 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     },
   });
 
+  const [isButtonActive, setIsButtonActive] = useState(false); // Variable para activar el boton de añadir si el formulario es valido
+
+  // Variables de validación
+  const [isBrandValid, setIsBrandValid] = useState(true);
+  const [isCarModelValid, setIsCarModelValid] = useState(true);
+  const [isYearValid, setIsYearValid] = useState(true);
+  const [isPresentacionValid, setIsPresentacionValid] = useState(true);
+  const [isPrecioValid, setIsPrecioValid] = useState(true);
+  const [isKilometrajeValid, setIsKilometrajeValid] = useState(true);
+  const [isCombustibleValid, setIsCombustibleValid] = useState(true);
+  const [isImageUrlValid, setIsImageUrlValid] = useState(true);
+
+  // Variables para detectar estados de los inputs
+  const [isYearFocused, setIsYearFocused] = useState(false);
+  const [isBrandFocused, setIsBrandFocused] = useState(false);
+  const [isCarModelFocused, setIsCarModelFocused] = useState(false);
+  const [isPresentacionFocused, setIsPresentacionFocused] = useState(false);
+  const [isPrecioFocused, setIsPrecioFocused] = useState(false);
+  const [isKilometrajeFocused, setIsKilometrajeFocused] = useState(false);
+  const [isCombustibleFocused, setIsCombustibleFocused] = useState(false);
+  const [isImageUrlFocused, setIsImageUrlFocused] = useState(false);
+
+  const [isSelectHovered, setIsSelectHovered] = useState(false);
+  const [isSelectActive, setIsSelectActive] = useState(false);
+  const [isStateValid, setIsStateValid] = useState(true);
+
+  const [isAddingModel, setIsAddingModel] = useState(false);
+  const [isSelectEnabled, setIsSelectEnabled] = useState(false);
+
+  const selectRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const {
+      presentacion,
+      precio,
+      estado,
+      year,
+      imageUrl,
+      kilometraje,
+      combustible,
+      fichaTecnica,
+      brand,
+      carModel,
+    } = formData;
+
+    // Validación del rango de los años
+    const currentYear = new Date().getFullYear();
+    const minYear = 2010;
+    const validYear = year >= minYear && year <= currentYear;
+    setIsYearValid(validYear);
+
+    // Validación de propiedad brand
+    const brandRegex = /^(?!\s*$)[a-zA-Z\- ]{2,10}$/;
+    const validBrand = brandRegex.test(brand.name);
+    setIsBrandValid(validBrand);
+
+    // Validación de propiedad carModel
+    const carModelRegex = /^(?!\s*$)[A-Za-z\-. ]{2,20}$/;
+    const validCarModel = carModelRegex.test(carModel.name);
+    setIsCarModelValid(validCarModel);
+
+    // Validación de propiedad presentacion
+    const presentacionRegex = /^(?!\s*$)[A-Za-z.\- ]{5,30}$/;
+    const validPresentacion = presentacionRegex.test(presentacion);
+    setIsPresentacionValid(validPresentacion);
+
+    // Validación de propiedad precio
+    const precioRegex = /^\d{4,6}$/;
+    const validPrecio = precioRegex.test(precio.toString());
+    setIsPrecioValid(validPrecio);
+
+    // Validación de propiedad kilometro
+    const kilometrajeRegex = /^\d{0,6}$/;
+    const validKilometraje = kilometrajeRegex.test(kilometraje.toString());
+    setIsKilometrajeValid(validKilometraje);
+
+    // Validación de propiedad combustible
+    const validCombustible = ["gasolina", "gasoil", "electrica"].includes(
+      combustible
+    );
+    setIsCombustibleValid(validCombustible);
+
+    // Validación de propiedad imageUrl
+    const imageUrlRegex =
+      /(http|https|ftp|ftps):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,3}(\/\S+)?\.(png|jpg|jpeg|gif)$/;
+    const validImageUrl =
+      typeof imageUrl === "string"
+        ? imageUrlRegex.test(imageUrl)
+        : Array.isArray(imageUrl) &&
+          imageUrl.every((url) => imageUrlRegex.test(url)); // Validamos imageUrl como cadena de texto o como array
+    setIsImageUrlValid(validImageUrl);
+
+    // Validaciónes de formulario completo
+    const isFormDataValid =
+      validPresentacion &&
+      validPrecio &&
+      estado !== "" &&
+      validImageUrl &&
+      isYearValid &&
+      validKilometraje &&
+      validCombustible &&
+      fichaTecnica.motor !== 0 &&
+      fichaTecnica.pasajeros !== 0 &&
+      fichaTecnica.carroceria !== "" &&
+      fichaTecnica.transmision !== "" &&
+      fichaTecnica.traccion !== "" &&
+      fichaTecnica.llantas !== 0 &&
+      fichaTecnica.potencia !== 0 &&
+      fichaTecnica.puertas !== 0 &&
+      fichaTecnica.baul !== 0 &&
+      fichaTecnica.airbag !== 0 &&
+      isBrandValid &&
+      isCarModelValid;
+
+    setIsButtonActive(isFormDataValid);
+  }, [formData, isBrandValid, isCarModelValid, isYearValid]);
+
   const fetchBrands = async () => {
     try {
       const response = await fetch("http://localhost:3001/brands", {
@@ -165,16 +239,20 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   const fetchModels = async (brandName: string) => {
     console.log(brandName);
     try {
-      const response = await fetch(
-        `http://localhost:3001/carModels/byBrand?brand=${brandName}`,
-        {
-          next: {
-            revalidate: 10,
-          },
-        }
-      );
+      const response =
+        brandName !== "add"
+          ? await fetch(
+              `http://localhost:3001/carModels/byBrand?brand=${brandName}`,
+              {
+                next: {
+                  revalidate: 10,
+                },
+              }
+            )
+          : null;
+
       console.log(response);
-      const models = await response.json();
+      const models = await response?.json();
       setInventoryModelList(models);
       setNewVehicleModelList(models);
       setInventoryModel("");
@@ -209,6 +287,18 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   if (!brand) {
     fetchBrands();
   }
+  const handleChangeBrands = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    console.log(inputValue);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      brand: {
+        name: inputValue,
+      },
+    }));
+    setNewBrand(inputValue);
+  };
 
   const handleBrandSelection = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedBrand = e.target.value;
@@ -221,7 +311,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       brand: {
-        name: selectedBrand,
+        name: selectedBrand === "add" ? "" : selectedBrand,
       },
     }));
 
@@ -245,6 +335,19 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     // updateCombinedData(selectedBrand, "", "", "", {});
   };
 
+  const handleChangeModels = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    console.log(inputValue);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      carModel: {
+        name: inputValue,
+      },
+    }));
+    setNewModel(inputValue);
+  };
+
   const handleModelSelection = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedModel = e.target.value;
     console.log(selectedModel);
@@ -261,14 +364,6 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       setSelectedState("");
     }
 
-    const { value } = e.target;
-
-    if (value !== "") {
-      setShowAddYearInput(true);
-    } else {
-      setShowAddYearInput(false);
-    }
-
     setInventoryModel(selectedModel);
     setNewVehicleModel(selectedModel);
 
@@ -277,15 +372,18 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       carModel: {
-        name: selectedModel,
+        name: selectedModel === "add" ? "" : selectedModel,
       },
     }));
+
+    setIsAddingModel(selectedModel === "add");
+    setIsSelectEnabled(selectedModel === "add");
     // fetchYears(selectedBrand, selectedModel)
-    // updateCombinedData("", selectedModel, "", "", {});
   };
 
   const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = e.target.value;
+
     console.log(selectedValue);
 
     setFormData((prevFormData) => ({
@@ -315,8 +413,34 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormData,
       estado: selectedValue,
     }));
+
+    const { name, value } = e.target;
+
+    if (name === "estado") {
+      setIsStateValid(value !== "");
+    }
   };
 
+  const handleSelectHover = () => {
+    setIsSelectHovered(true);
+  };
+
+  const handleSelectLeave = () => {
+    setIsSelectHovered(false);
+  };
+
+  const handleSelectFocus = () => {
+    setIsSelectActive(true);
+  };
+
+  const handleSelectBlur = () => {
+    setIsSelectActive(false);
+  };
+
+  // const handleSelectClick = () => {
+  //   setIsSelectActive(true);
+  //   selectRef.current.focus();
+  // };
   const handleChangePresentacion = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setFormData((prevFormData) => ({
@@ -324,6 +448,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       presentacion: value,
     }));
   };
+
   const handleChangePrecio = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setFormData((prevFormData) => ({
@@ -345,6 +470,14 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       combustible: value,
+    }));
+  };
+
+  const handleChangeImagen = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
     }));
   };
 
@@ -511,18 +644,18 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
 
     const jsonData = JSON.stringify(formData);
     console.log(formData);
-    // axios
-    //   .post("http://localhost:3001/cars", jsonData, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    axios
+      .post("http://localhost:3001/cars", jsonData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log("Error:" + response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     // Envio el formulario de "Añadir un nuevo vehículo"
     console.log("Nueva marca de vehículo:", newVehicleBrand);
     console.log("Nuevo modelo de vehículo:", newVehicleModel);
@@ -745,17 +878,32 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                 <div className="">
                   <div className="flex flex-row m-auto w-fit">
                     {showAddBrandInput ? (
-                      <div className="flex flex-row items-center">
+                      <div className="flex flex-row items-center relative">
                         <input
                           type="text"
                           value={newBrand}
-                          onChange={(e) => setNewBrand(e.target.value)}
+                          onChange={handleChangeBrands}
                           placeholder="Nueva Marca"
-                          className="border border-gray-300 rounded-s-lg px-4 py-2 my-4 "
+                          onFocus={() => setIsBrandFocused(true)}
+                          onBlur={() => setIsBrandFocused(false)}
+                          className={`relative  border border-gray-300 rounded-s-lg px-4 py-2 my-4  ${
+                            !isBrandValid && !isBrandFocused
+                              ? "border-red-500"
+                              : isBrandValid && !isBrandFocused
+                              ? "border-green-500"
+                              : ""
+                          }`}
                         />
+                        {!isBrandValid && isBrandFocused && (
+                          <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm">
+                            Por favor, ingresa una marca válida (mínimo 2
+                            caracteres, no puede contener números y no puede ser
+                            solo "-").
+                          </div>
+                        )}
                         <button
                           onClick={handleCancelAddBrand}
-                          className="w-8 h-10 py-2 mr-4 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
+                          className="w-8 h-[42px] py-2 mr-4 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
                         >
                           <span className="text-xl font-bold">X</span>
                         </button>
@@ -787,18 +935,33 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                       </select>
                     )}
 
-                    {showAddModelInput ? (
-                      <div className="flex flex-row items-center">
+                    {showAddBrandInput ? (
+                      <div className="flex flex-row items-center relative">
                         <input
                           type="text"
                           value={newModel}
-                          onChange={(e) => setNewModel(e.target.value)}
+                          onChange={handleChangeModels}
                           placeholder="Nuevo Modelo"
-                          className="border border-gray-300 rounded-s-lg px-4 py-2 my-4 "
+                          onFocus={() => setIsCarModelFocused(true)}
+                          onBlur={() => setIsCarModelFocused(false)}
+                          className={`relative  border border-gray-300 rounded-s-lg px-4 py-2 my-4  ${
+                            !isCarModelValid && !isCarModelFocused
+                              ? "border-red-500"
+                              : isCarModelValid && !isCarModelFocused
+                              ? "border-green-500"
+                              : ""
+                          }`}
                         />
+                        {!isCarModelValid && isCarModelFocused && (
+                          <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm">
+                            Por favor, ingresa un modelo de carro válido (minimo
+                            2 caracteres y máximo 20 caracteres, letras,
+                            números, puntos y guiones).
+                          </div>
+                        )}
                         <button
                           onClick={handleCancelAddModel}
-                          className="w-8 h-10 py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
+                          className="w-8 h-[42px] py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
                         >
                           <span className="text-xl font-bold">X</span>
                         </button>
@@ -826,14 +989,27 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                     )}
 
                     {showAddModelInput ? (
-                      <div className="flex flex-row items-center">
+                      <div className="flex flex-row items-center relative">
                         <input
                           type="text"
                           value={newYear}
                           onChange={handleYearChange}
                           placeholder="Año del vehículo"
-                          className="border border-gray-300 rounded-s-lg px-4 py-2 my-4 "
+                          onFocus={() => setIsYearFocused(true)}
+                          onBlur={() => setIsYearFocused(false)}
+                          className={`relative  border border-gray-300 rounded-s-lg px-4 py-2 my-4  ${
+                            !isYearValid && !isYearFocused
+                              ? "border-red-500"
+                              : isYearValid && !isYearFocused
+                              ? "border-green-500"
+                              : ""
+                          }`}
                         />
+                        {!isYearValid && isYearFocused && (
+                          <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm">
+                            Por favor, ingresa un año válido.
+                          </div>
+                        )}
                         <button
                           onClick={handleCancelAddYear}
                           className="w-8 h-10 py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
@@ -875,14 +1051,25 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                       </div>
                     )}
 
-                    <div>
+                    <div className="relative">
                       <select
+                        ref={selectRef}
                         value={selectedState}
                         onChange={handleStateSelection}
                         disabled={
                           !newVehicleBrand || !newVehicleModel || isAddingBrand
                         }
-                        className="border border-gray-300 rounded px-4 py-2 my-4 mx-2"
+                        className={`border rounded px-4 py-2 my-4 mx-2 ${
+                          selectedState === "usado" || selectedState === "nuevo"
+                            ? "border-green-500"
+                            : selectedState === "add"
+                            ? "border-s-gray-500"
+                            : "border-red-500"
+                        }`}
+                        onMouseEnter={handleSelectHover}
+                        onMouseLeave={handleSelectLeave}
+                        onFocus={handleSelectFocus}
+                        onBlur={handleSelectBlur}
                       >
                         <option value="">Estado</option>
                         {brandList ? (
@@ -896,174 +1083,289 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                           </>
                         ) : null}
                       </select>
+                      {isSelectHovered && !selectedState && !isSelectActive && (
+                        <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 m-2 bg-red-500/90 text-white text-sm">
+                          Por favor, selecciona un estado válido.
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="flex flex-col items-center">
                     {newVehicleBrand && newVehicleModel && (
-                      <div className="flex flex-col items-center">
-                        <div className="flex flex-row items-center">
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="presentacion">Presentación:</label>
-                            <input
-                              type="text"
-                              id="presentacion"
-                              name={formData.presentacion}
-                              onChange={handleChangePresentacion}
-                              placeholder="Presentación"
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="precio">Precio:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="precio"
-                              name={formData.precio.toString()}
-                              onChange={handleChangePrecio}
-                              placeholder="Precio"
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="kilometraje">Kilometraje:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="kilometraje"
-                              name={formData.kilometraje.toString()}
-                              onChange={handleChangeKilometraje}
-                              placeholder="Kilometraje"
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="combustible">Combustible:</label>
-                            <input
-                              type="text"
-                              id="combustible"
-                              name={formData.combustible}
-                              onChange={handleChangeCombustible}
-                              placeholder="Combustible"
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
+                      <div className="flex flex-row items-center justify-center">
+                        <div className="w-200 p-8 bg-white rounded shadow-lg flex-grow flex-shrink">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="flex flex-col mt-2 mx-2 relative">
+                              <label htmlFor="presentacion">
+                                Presentación:
+                              </label>
+                              <input
+                                type="text"
+                                id="presentacion"
+                                name={formData.presentacion}
+                                onChange={handleChangePresentacion}
+                                placeholder="Presentación"
+                                onFocus={() => setIsPresentacionFocused(true)}
+                                onBlur={() => setIsPresentacionFocused(false)}
+                                // className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
+                                className={`relative border border-gray-300 rounded  px-4 py-2 mt-1 mb-2  ${
+                                  !isPresentacionValid && !isPresentacionFocused
+                                    ? "border-red-500"
+                                    : isPresentacionValid &&
+                                      !isPresentacionFocused
+                                    ? "border-green-500"
+                                    : ""
+                                }`}
+                              />
+                              {!isPresentacionValid &&
+                                isPresentacionFocused && (
+                                  <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-0.8rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm z-10">
+                                    Por favor, ingresa una presentación válida
+                                    (mínimo 5 caracteres y máximo 30 caracteres,
+                                    solo letras, "-", y ".")
+                                  </div>
+                                )}
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2 relative">
+                              <label htmlFor="precio">Precio:</label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="precio"
+                                name={formData.precio.toString()}
+                                onChange={handleChangePrecio}
+                                onFocus={() => setIsPrecioFocused(true)}
+                                onBlur={() => setIsPrecioFocused(false)}
+                                placeholder="0"
+                                className={`relative border border-gray-300 rounded  px-4 py-2 mt-1 mb-2  ${
+                                  !isPrecioValid && !isPrecioFocused
+                                    ? "border-red-500"
+                                    : isPrecioValid && !isPrecioFocused
+                                    ? "border-green-500"
+                                    : ""
+                                }`}
+                              />
+                              {!isPrecioValid && isPrecioFocused && (
+                                <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-0.8rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm z-10">
+                                  Por favor, ingresa un precio válido (mínimo 4
+                                  caracteres y máximo 6 caracteres, solo
+                                  números).
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="flex flex-col mt-2 mx-2 relative">
+                              <label htmlFor="kilometraje">Kilometraje:</label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="kilometraje"
+                                name={formData.kilometraje.toString()}
+                                onChange={handleChangeKilometraje}
+                                onFocus={() => setIsKilometrajeFocused(true)}
+                                onBlur={() => setIsKilometrajeFocused(false)}
+                                placeholder="0"
+                                className={`relative border border-gray-300 rounded  px-4 py-2 mt-1 mb-2  ${
+                                  !isKilometrajeValid && !isKilometrajeFocused
+                                    ? "border-red-500"
+                                    : isKilometrajeValid &&
+                                      !isKilometrajeFocused
+                                    ? "border-green-500"
+                                    : ""
+                                }`}
+                              />
+                              {!isKilometrajeValid && isKilometrajeFocused && (
+                                <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-0.8rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm z-10">
+                                  Por favor, ingresa un kilometraje válido
+                                  (mínimo 0K y máximo 999999K dígitos
+                                  numéricos).
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2 relative">
+                              <label htmlFor="combustible">Combustible:</label>
+                              <input
+                                type="text"
+                                id="combustible"
+                                name={formData.combustible}
+                                onChange={handleChangeCombustible}
+                                onFocus={() => setIsCombustibleFocused(true)}
+                                onBlur={() => setIsCombustibleFocused(false)}
+                                placeholder="Combustible"
+                                className={`relative border border-gray-300 rounded  px-4 py-2 mt-1 mb-2  ${
+                                  !isCombustibleValid && !isCombustibleFocused
+                                    ? "border-red-500"
+                                    : isCombustibleValid &&
+                                      !isCombustibleFocused
+                                    ? "border-green-500"
+                                    : ""
+                                }`}
+                              />
+                              {!isCombustibleValid && isCombustibleFocused && (
+                                <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-0.8rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm z-10">
+                                  Por favor, selecciona un tipo de combustible
+                                  válido (gasolina, gasoil o electrica)
+                                </div>
+                              )}
+                            </div>
                           </div>
                         </div>
+                        <div className="w-200 h-full ml-2 p-8 bg-white rounded shadow-lg flex-grow flex-shrink relative">
+                          <input
+                            type="text"
+                            name="imageUrl"
+                            value={formData.imageUrl}
+                            onChange={handleChangeImagen}
+                            onFocus={() => setIsImageUrlFocused(true)}
+                            onBlur={() => setIsImageUrlFocused(false)}
+                            className={`relative border border-gray-300 rounded  px-4 py-2 mt-1 mb-2  ${
+                              !isImageUrlValid && !isImageUrlFocused
+                                ? "border-red-500"
+                                : isImageUrlValid && !isImageUrlFocused
+                                ? "border-green-500"
+                                : ""
+                            }`}
+                          />
+                          {!isImageUrlValid && isImageUrlFocused && (
+                            <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-0.8rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm z-10">
+                              Por favor, ingresa una URL válida de una imagen
+                              (formatos compatibles: gif, jpeg, jpg, tiff, png,
+                              webp, bmp).
+                            </div>
+                          )}
+                          {isImageUrlValid && formData.imageUrl && (
+                            <div className="cover">
+                              <Image
+                                src={formData.imageUrl[0]}
+                                width={200}
+                                height={200}
+                                alt="Imagen"
+                              />
+                            </div>
+                          )}
+                        </div>{" "}
                       </div>
                     )}
                   </div>
 
-                  <div className="p-8 w-full justify-center">
+                  <div className="p-8 w-full">
                     {newVehicleBrand && newVehicleModel && (
-                      <div className="flex flex-col items-center">
-                        <h2>FICHA TÉCNICA</h2>
-                        <div className="flex flex-wrap justify-evently my-1 mx-20">
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="motor">Motor:</label>
-                            <input
-                              type="text"
-                              id="motor"
-                              name={formData.fichaTecnica.motor.toString()}
-                              onChange={handleChangeMotor}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="pasajeros">Pasajeros:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="pasajeros"
-                              name={formData.fichaTecnica.pasajeros.toString()}
-                              onChange={handleChangePasajeros}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="carroceria">Carrocería:</label>
-                            <input
-                              type="text"
-                              id="carroceria"
-                              name={formData.fichaTecnica.carroceria.toString()}
-                              onChange={handleChangeCarroceria}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="transmision">Transmisión:</label>
-                            <input
-                              type="text"
-                              id="transmision"
-                              name={formData.fichaTecnica.transmision.toString()}
-                              onChange={handleChangeTransmision}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="traccion">Tracción:</label>
-                            <input
-                              type="text"
-                              id="traccion"
-                              name={formData.fichaTecnica.traccion.toString()}
-                              onChange={handleChangeTraccion}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="llantas">Llantas:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="llantas"
-                              name={formData.fichaTecnica.llantas.toString()}
-                              onChange={handleChangeLlantas}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="potencia">Potencia:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="potencia"
-                              name={formData.fichaTecnica.potencia.toString()}
-                              onChange={handleChangePotencia}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="puertas">Puertas:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="puertas"
-                              name={formData.fichaTecnica.puertas.toString()}
-                              onChange={handleChangePuerta}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="baul">Baúl:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="baul"
-                              name={formData.fichaTecnica.baul.toString()}
-                              onChange={handleChangeBaul}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
-                          </div>
-                          <div className="flex flex-col mt-2 mx-2">
-                            <label htmlFor="airbag">Airbag:</label>
-                            <input
-                              type="number"
-                              min={0}
-                              id="airbag"
-                              name={formData.fichaTecnica.airbag.toString()}
-                              onChange={handleChangeAirbag}
-                              className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2"
-                            />
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="w-200 p-8 bg-white rounded shadow-lg flex-grow flex-shrink">
+                          <h2 className="text-2xl text-center font-bold mb-4">
+                            FICHA TÉCNICA
+                          </h2>
+
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="motor">Motor:</label>
+                              <input
+                                type="text"
+                                id="motor"
+                                name={formData.fichaTecnica.motor.toString()}
+                                onChange={handleChangeMotor}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="pasajeros" className="form-label">
+                                Pasajeros:
+                              </label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="pasajeros"
+                                name={formData.fichaTecnica.pasajeros.toString()}
+                                onChange={handleChangePasajeros}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="carroceria">Carrocería:</label>
+                              <input
+                                type="text"
+                                id="carroceria"
+                                name={formData.fichaTecnica.carroceria.toString()}
+                                onChange={handleChangeCarroceria}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="transmision">Transmisión:</label>
+                              <input
+                                type="text"
+                                id="transmision"
+                                name={formData.fichaTecnica.transmision.toString()}
+                                onChange={handleChangeTransmision}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="traccion">Tracción:</label>
+                              <input
+                                type="text"
+                                id="traccion"
+                                name={formData.fichaTecnica.traccion.toString()}
+                                onChange={handleChangeTraccion}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="llantas">Llantas:</label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="llantas"
+                                name={formData.fichaTecnica.llantas.toString()}
+                                onChange={handleChangeLlantas}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="potencia">Potencia:</label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="potencia"
+                                name={formData.fichaTecnica.potencia.toString()}
+                                onChange={handleChangePotencia}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="puertas">Puertas:</label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="puertas"
+                                name={formData.fichaTecnica.puertas.toString()}
+                                onChange={handleChangePuerta}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="baul">Baúl:</label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="baul"
+                                name={formData.fichaTecnica.baul.toString()}
+                                onChange={handleChangeBaul}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
+                            <div className="flex flex-col mt-2 mx-2">
+                              <label htmlFor="airbag">Airbag:</label>
+                              <input
+                                type="number"
+                                min={0}
+                                id="airbag"
+                                name={formData.fichaTecnica.airbag.toString()}
+                                onChange={handleChangeAirbag}
+                                className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1073,8 +1375,14 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
 
                 <div>
                   <button
-                    className="bg-blue-500 text-white py-2 px-4 mb-10 rounded-lg transition duration-300 hover:shadow-md shadow-[#555555] hover:text-gray-900 hover:bg-[#FFD700]"
+                    // className="bg-blue-500 text-white py-2 px-4 mb-10 rounded-lg transition duration-300 hover:shadow-md shadow-[#555555] hover:text-gray-900 hover:bg-[#FFD700]"
                     type="submit"
+                    disabled={!isButtonActive}
+                    className={`py-2 px-4 rounded ${
+                      isButtonActive
+                        ? "bg-blue-500 text-white animate-pulse-gradient px-4 mb-8 rounded-lg transition duration-300 hover:shadow-md shadow-[#555555] hover:text-gray-900 hover:bg-[#FFD700] "
+                        : "bg-gray-400 text-white  px-4 mb-8 rounded-lg transition duration-300 shadow-[#555555]cursor-not-allowed"
+                    }`}
                   >
                     PUBLISH
                   </button>
