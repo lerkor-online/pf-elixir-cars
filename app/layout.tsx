@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "@/components/nav/nav";
 import { ClerkProvider, SignedIn } from "@clerk/nextjs";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,22 +17,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider
-      appearance={{
-        layout: {
-          socialButtonsPlacement: "bottom",
-        },
-      }}
-    >
+    <ClerkProvider>
       <html lang="en">
         <body className={`${inter.className}`}>
           <SignedIn>
             <Nav />
           </SignedIn>
+
           {children}
           <Footer />
         </body>
       </html>
     </ClerkProvider>
   );
+}
+function useEffec() {
+  throw new Error("Function not implemented.");
 }

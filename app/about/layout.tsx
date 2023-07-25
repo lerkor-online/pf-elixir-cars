@@ -12,7 +12,6 @@ function HomeLayout({ children }: Props) {
       <Nav />
       <Header />
       {children}
-      <Footer />
     </div>
   );
 }
