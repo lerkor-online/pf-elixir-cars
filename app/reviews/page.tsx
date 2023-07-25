@@ -1,9 +1,11 @@
-import Newsletter from '@/components/newsletter/Newsletter';
+import Nav from "@/components/nav/nav";
+import Newsletter from "@/components/newsletter/Newsletter";
 
 export default function Reviews() {
   return (
     <div>
-        <Newsletter/>
-    </div> 
+      <Nav />
+      <Newsletter />
+    </div>
   );
 }

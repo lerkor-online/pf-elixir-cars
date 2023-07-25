@@ -7,7 +7,8 @@ import { useState } from "react";
 export default function Landing() {
   const [showLogin, setShowLogin] = useState(false);
 
-  const onClickHandler = () => {
+  const onClickHandler = (e: any) => {
+    e.preventDefault();
     setShowLogin(true);
   };
 

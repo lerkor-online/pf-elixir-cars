@@ -12,6 +12,13 @@ const isPublic = (path: string) => {
 };
 
 export default withClerkMiddleware((request: NextRequest) => {
+  const token = request.cookies.get("cookiesToken"); // Lee la cookie desde request.cookies
+
+  console.log(token);
+  if (token) {
+    return NextResponse.next();
+  }
+
   if (isPublic(request.nextUrl.pathname)) {
     return NextResponse.next();
   }

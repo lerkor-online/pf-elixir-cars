@@ -12,7 +12,6 @@ function HomeLayout({ children }: Props) {
       <Nav />
       {children}
       <CarouselMarca />
-      <Footer />
     </div>
   );
 }
