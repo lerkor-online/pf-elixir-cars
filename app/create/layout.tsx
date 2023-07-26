@@ -9,7 +9,6 @@ interface Props {
 function HomeLayout({ children }: Props) {
   return (
     <div className=" max-w-full max-h-full ">
-      <Nav />
       {children}
       <CarouselMarca />
     </div>

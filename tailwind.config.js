@@ -24,6 +24,25 @@ module.exports = {
         120: "120px",
         144: "144px",
       },
+      animation: {
+        "pulse-gradient": "pulse-gradient 0.5s",
+      },
+      keyframes: {
+        "pulse-gradient": {
+          "0%": {
+            "box-shadow": "0 0 0 0 rgba(255, 215, 0, 0.5)",
+            trasform: "scale(1)",
+          },
+          "70%": {
+            "box-shadow": "0 0 0 5px rgba(255, 225, 0, 0.7)",
+            transform: "scale(1.15)",
+          },
+          "100%": {
+            "box-shadow": "0 0 0 0x rgba(255, 215, 0, 0.1)",
+            trasform: "scale(1)",
+          },
+        },
+      },
     },
     plugins: [],
   },
