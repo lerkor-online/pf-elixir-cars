@@ -1,46 +1,47 @@
+/* eslint-disable quote-props */
 "use client";
 import React, { ChangeEvent, useState, useLayoutEffect, useRef } from "react";
 import axios from "axios";
 
-interface FichaTecnica {
-  motor: number;
-  pasajeros: number;
-  carroceria: string;
-  transmision: string;
-  traccion: string;
-  llantas: number;
-  potencia: number;
-  puertas: number;
-  baul: number;
-  airbag: number;
-}
+// interface FichaTecnica {
+//   motor: string;
+//   pasajeros: string;
+//   carroceria: string;
+//   transmision: string;
+//   traccion: string;
+//   llantas: string;
+//   potencia: string;
+//   puertas: string;
+//   baul: string;
+//   airbag: string;
+// }
 
-interface Brand {
-  name: string;
-}
-
-interface CarModel {
-  name: string;
-}
-
-interface FormValues {
-  id: number;
-  brandId: number;
-  carModelId: number;
+export interface CarData {
+  marca: string;
+  modelo: string;
   presentacion: string;
   precio: number;
   estado: string;
   year: number;
   imageUrl: string[];
-  kilometraje: number;
   combustible: string;
-  fichaTecnica: FichaTecnica;
-  brand: Brand;
-  carModel: CarModel;
+  kilometraje: number;
+  fichaTecnica: {
+    Motor: string;
+    Pasajeros: string;
+    Carroceria: string;
+    Transmision: string;
+    Traccion: string;
+    Llantas: string;
+    Potencia: string;
+    Puertas: string;
+    Baul: string;
+    airbag: string;
+  };
 }
-const AddCars: React.FC<FormValues> = ({ brand }) => {
-  const [brandList, setBrandList] = useState(brand);
-  const [modelList, setModelList] = useState<CarModel[]>([]);
+const AddCars: React.FC<CarData> = ({ marca }) => {
+  const [brandList, setBrandList] = useState(marca);
+  const [modelList, setModelList] = useState("");
 
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
@@ -72,11 +73,9 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   >([]);
 
   const [selectedState, setSelectedState] = useState("");
-
-  const [formData, setFormData] = useState<FormValues>({
-    id: 0,
-    brandId: 0,
-    carModelId: 0,
+  const [formData, setFormData] = useState<CarData>({
+    marca: "",
+    modelo: "",
     presentacion: "",
     precio: 0,
     estado: "",
@@ -85,22 +84,16 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     kilometraje: 0,
     combustible: "",
     fichaTecnica: {
-      motor: 0,
-      pasajeros: 0,
-      carroceria: "",
-      transmision: "",
-      traccion: "",
-      llantas: 0,
-      potencia: 0,
-      puertas: 0,
-      baul: 0,
-      airbag: 0,
-    },
-    brand: {
-      name: "",
-    },
-    carModel: {
-      name: "",
+      Motor: "",
+      Pasajeros: "",
+      Carroceria: "",
+      Transmision: "",
+      Traccion: "",
+      Llantas: "",
+      Potencia: "",
+      Puertas: "",
+      Baul: "",
+      airbag: "",
     },
   });
 
@@ -145,8 +138,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       kilometraje,
       combustible,
       fichaTecnica,
-      brand,
-      carModel,
+      marca,
+      modelo,
     } = formData;
 
     // Validación del rango de los años
@@ -155,14 +148,14 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     const validYear = year >= minYear && year <= currentYear;
     setIsYearValid(validYear);
 
-    // Validación de propiedad brand
+    // Validación de propiedad marca
     const brandRegex = /^(?!\s*$)[a-zA-Z\- ]{2,10}$/;
-    const validBrand = brandRegex.test(brand.name);
+    const validBrand = brandRegex.test(marca);
     setIsBrandValid(validBrand);
 
-    // Validación de propiedad carModel
+    // Validación de propiedad modelo
     const carModelRegex = /^(?!\s*$)[A-Za-z\-. ]{2,20}$/;
-    const validCarModel = carModelRegex.test(carModel.name);
+    const validCarModel = carModelRegex.test(modelo);
     setIsCarModelValid(validCarModel);
 
     // Validación de propiedad presentacion
@@ -205,16 +198,16 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       isYearValid &&
       validKilometraje &&
       validCombustible &&
-      fichaTecnica.motor !== 0 &&
-      fichaTecnica.pasajeros !== 0 &&
-      fichaTecnica.carroceria !== "" &&
-      fichaTecnica.transmision !== "" &&
-      fichaTecnica.traccion !== "" &&
-      fichaTecnica.llantas !== 0 &&
-      fichaTecnica.potencia !== 0 &&
-      fichaTecnica.puertas !== 0 &&
-      fichaTecnica.baul !== 0 &&
-      fichaTecnica.airbag !== 0 &&
+      fichaTecnica.Motor !== "" &&
+      fichaTecnica.Pasajeros !== "" &&
+      fichaTecnica.Carroceria !== "" &&
+      fichaTecnica.Transmision !== "" &&
+      fichaTecnica.Traccion !== "" &&
+      fichaTecnica.Llantas !== "" &&
+      fichaTecnica.Potencia !== "" &&
+      fichaTecnica.Puertas !== "" &&
+      fichaTecnica.Baul !== "" &&
+      fichaTecnica.airbag !== "" &&
       isBrandValid &&
       isCarModelValid;
 
@@ -254,12 +247,8 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       const models = await response?.json();
       setInventoryModelList(models);
       setNewVehicleModelList(models);
-      setInventoryModel("");
-      setNewVehicleModel("");
     } catch (error) {
       console.error("Error al obtener los modelos:", error);
-
-      setModelList([]);
     }
   };
 
@@ -283,25 +272,21 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   //   }
   // };
 
-  if (!brand) {
+  if (!marca) {
     fetchBrands();
   }
   const handleChangeBrands = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    console.log(inputValue);
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      brand: {
-        name: inputValue,
-      },
+      marca: inputValue,
     }));
     setNewBrand(inputValue);
   };
 
   const handleBrandSelection = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedBrand = e.target.value;
-    console.log(selectedBrand);
 
     // if (selectedBrand === "add") {
     //   setNewBrand("add");
@@ -309,20 +294,21 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     // }
     setFormData((prevFormData) => ({
       ...prevFormData,
-      brand: {
-        name: selectedBrand === "add" ? "" : selectedBrand,
-      },
+      marca: selectedBrand === "add" ? "" : selectedBrand,
     }));
 
     if (selectedBrand === "add") {
       setShowAddBrandInput(true);
-      setNewBrand("");
+      setShowAddModelInput(true);
+      setNewModel("");
       setSelectedState("");
     } else {
       setShowAddBrandInput(false);
+      setShowAddModelInput(false);
       setNewBrand(selectedBrand);
       setSelectedState("");
     }
+
     setInventoryBrand(selectedBrand);
     setNewVehicleBrand(selectedBrand);
 
@@ -330,7 +316,14 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     setSelectedYear("");
 
     fetchModels(selectedBrand);
+    console.log("Selected brand:", selectedBrand);
+    console.log("showAddBrandInput before:", showAddBrandInput);
+    console.log("showAddModelInput before:", showAddModelInput);
 
+    // Resto del código...
+
+    console.log("showAddBrandInput after:", showAddBrandInput);
+    console.log("showAddModelInput after:", showAddModelInput);
     // updateCombinedData(selectedBrand, "", "", "", {});
   };
 
@@ -340,9 +333,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      carModel: {
-        name: inputValue,
-      },
+      modelo: inputValue,
     }));
     setNewModel(inputValue);
   };
@@ -370,14 +361,20 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      carModel: {
-        name: selectedModel === "add" ? "" : selectedModel,
-      },
+      modelo: selectedModel === "add" ? "" : selectedModel,
     }));
 
     setIsAddingModel(selectedModel === "add");
     setIsSelectEnabled(selectedModel === "add");
     // fetchYears(selectedBrand, selectedModel)
+    console.log("Selected model:", selectedModel);
+    console.log("showAddBrandInput before:", showAddBrandInput);
+    console.log("showAddModelInput before:", showAddModelInput);
+
+    // Resto del código...
+
+    console.log("showAddBrandInput after:", showAddBrandInput);
+    console.log("showAddModelInput after:", showAddModelInput);
   };
 
   const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -473,10 +470,11 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   };
 
   const handleChangeImagen = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
+    console.log(value);
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      imageUrl: value.split("\n"),
     }));
   };
 
@@ -487,7 +485,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        motor: Number(value),
+        Motor: value,
       },
     }));
   };
@@ -498,7 +496,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        pasajeros: Number(value),
+        Pasajeros: value,
       },
     }));
   };
@@ -509,7 +507,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        puertas: Number(value),
+        Puertas: value,
       },
     }));
   };
@@ -520,7 +518,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        carroceria: value,
+        Carroceria: value,
       },
     }));
   };
@@ -531,7 +529,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        transmision: value,
+        Transmision: value,
       },
     }));
   };
@@ -542,7 +540,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        llantas: Number(value),
+        Llantas: value,
       },
     }));
   };
@@ -553,7 +551,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        traccion: value,
+        Traccion: value,
       },
     }));
   };
@@ -564,7 +562,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        potencia: Number(value),
+        Potencia: value,
       },
     }));
   };
@@ -575,7 +573,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        baul: Number(value),
+        Baul: value,
       },
     }));
   };
@@ -586,7 +584,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
       ...prevFormValues,
       fichaTecnica: {
         ...prevFormValues.fichaTecnica,
-        airbag: Number(value),
+        airbag: value,
       },
     }));
   };
@@ -594,14 +592,16 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
   const handleCancelAddBrand = () => {
     setShowAddBrandInput(false);
     setShowAddModelInput(false);
+    setShowAddYearInput(false);
     setNewBrand("");
     setSelectedState("");
-    // setNewVehicleBrand("");
+    setNewVehicleBrand("");
     // updateCombinedData("", "", "", "", {});
   };
 
   const handleCancelAddModel = () => {
     setShowAddModelInput(false);
+    setShowAddYearInput(false);
     setNewModel("");
     setSelectedState("");
     setNewVehicleModel("");
@@ -642,7 +642,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
     console.log(e.target);
 
     const jsonData = JSON.stringify(formData);
-    console.log(formData);
+    console.log(jsonData);
     axios
       .post("http://localhost:3001/cars", jsonData, {
         headers: {
@@ -650,12 +650,44 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
         },
       })
       .then((response) => {
-        console.log("Error:" + response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
     // Envio el formulario de "Añadir un nuevo vehículo"
+    setNewBrand("");
+    setNewModel("");
+    setNewYear("");
+    setShowAddBrandInput(false);
+    setShowAddModelInput(false);
+    setShowAddYearInput(false);
+    setNewVehicleBrand("");
+    setNewVehicleModel("");
+    setSelectedState("");
+    setFormData({
+      marca: "",
+      modelo: "",
+      presentacion: "",
+      precio: 0,
+      estado: "",
+      year: 0,
+      imageUrl: [""],
+      kilometraje: 0,
+      combustible: "",
+      fichaTecnica: {
+        Motor: "",
+        Pasajeros: "",
+        Carroceria: "",
+        Transmision: "",
+        Traccion: "",
+        Llantas: "",
+        Potencia: "",
+        Puertas: "",
+        Baul: "",
+        airbag: "",
+      },
+    });
     console.log("Nueva marca de vehículo:", newVehicleBrand);
     console.log("Nuevo modelo de vehículo:", newVehicleModel);
   };
@@ -702,7 +734,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
           }}
           disabled={activeTab === "addVehicle"}
         >
-          Añadir un Nuevo Vehículo
+          Publica un Nuevo Vehículo
         </button>
 
         <button
@@ -721,8 +753,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
             handleCancelAddYear();
           }}
         >
-          {" "}
-          RELOAD{" "}
+          RELOAD
         </button>
       </div>
 
@@ -738,6 +769,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
               <h2 className="text-2xl font-bold mb-2 text-center">
                 AÑADE AL INVENTARIO
               </h2>
+
               <div className="flex flex-row m-auto w-fit">
                 <div>
                   <select
@@ -749,10 +781,11 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                     <option className="m-1" disabled value="">
                       Seleccione una Marca
                     </option>
+
                     {Array.isArray(brandList) && brandList.length > 0 ? (
-                      brandList.map((brand) => (
-                        <option key={brand.id} value={brand.name}>
-                          {brand.name}
+                      brandList.map((marca) => (
+                        <option key={marca.id} value={marca.name}>
+                          {marca.name}
                         </option>
                       ))
                     ) : (
@@ -773,6 +806,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                     <option className="m-1" value="">
                       Seleccione un Modelo
                     </option>
+
                     {Array.isArray(inventoryModelList) &&
                       inventoryModelList?.map((model, index) => (
                         <option key={index} value={model.name}>
@@ -792,6 +826,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                       placeholder="Año del vehículo"
                       className="border border-gray-300 rounded-s-lg px-4 py-2 my-4 "
                     />
+
                     <button
                       onClick={handleCancelAddYear}
                       className="w-8 h-10 py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
@@ -818,12 +853,14 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                       <option className="m-1 " value="">
                         Selecciona el Año
                       </option>
+
                       {Array.isArray(formData) &&
                         formData.map((element, index) => (
                           <option key={index} value={element.year}>
                             {element.year}
                           </option>
                         ))}
+
                       <option className="text-blue-500" value="add">
                         Agregar Año
                       </option>
@@ -842,10 +879,10 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                     <option value="">Estado</option>
                     {brandList ? (
                       <>
-                        <option className="m-1" value="nuevo">
+                        <option className="m-1" value="Nuevo">
                           🟢 Nuevo
                         </option>
-                        <option className="m-1" value="usado">
+                        <option className="m-1" value="Usado">
                           🟠 Usado
                         </option>
                       </>
@@ -912,15 +949,15 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                         value={newVehicleBrand}
                         onChange={handleBrandSelection}
                         className="border border-gray-300 rounded px-4 py-2 my-4 mx-2"
-                        disabled={isAddingBrand}
+                        disabled={showAddBrandInput}
                       >
                         <option disabled value="">
                           Selecciona una marca
                         </option>
                         {Array.isArray(brandList) && brandList.length > 0 ? (
-                          brandList.map((brand) => (
-                            <option key={brand.id} value={brand.name}>
-                              {brand.name}
+                          brandList.map((marca) => (
+                            <option key={marca.id} value={marca.name}>
+                              {marca.name}
                             </option>
                           ))
                         ) : (
@@ -934,7 +971,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                       </select>
                     )}
 
-                    {showAddBrandInput ? (
+                    {showAddYearInput ? (
                       <div className="flex flex-row items-center relative">
                         <input
                           type="text"
@@ -975,19 +1012,21 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                         <option disabled value="">
                           Selecciona un modelo
                         </option>
+
                         {Array.isArray(newVehicleModelList) &&
                           newVehicleModelList.map((model, index) => (
                             <option key={index} value={model.name}>
                               {model.name}
                             </option>
                           ))}
+
                         <option className="text-blue-500" value="add">
                           Agregar Modelo
                         </option>
                       </select>
                     )}
 
-                    {showAddModelInput ? (
+                    {showAddYearInput ? (
                       <div className="flex flex-row items-center relative">
                         <input
                           type="text"
@@ -1011,7 +1050,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                         )}
                         <button
                           onClick={handleCancelAddYear}
-                          className="w-8 h-10 py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
+                          className="w-8 h-[42px] py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
                         >
                           <span className="text-xl font-bold">X</span>
                         </button>
@@ -1059,7 +1098,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                           !newVehicleBrand || !newVehicleModel || isAddingBrand
                         }
                         className={`border rounded px-4 py-2 my-4 mx-2 ${
-                          selectedState === "usado" || selectedState === "nuevo"
+                          selectedState === "Usado" || selectedState === "Nuevo"
                             ? "border-green-500"
                             : selectedState === "add"
                             ? "border-s-gray-500"
@@ -1073,10 +1112,10 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                         <option value="">Estado</option>
                         {brandList ? (
                           <>
-                            <option className="m-1" value="nuevo">
+                            <option className="m-1" value="Nuevo">
                               🟢 Nuevo
                             </option>
-                            <option className="m-1" value="usado">
+                            <option className="m-1" value="Usado">
                               🟠 Usado
                             </option>
                           </>
@@ -1214,7 +1253,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                           <input
                             type="text"
                             name="imageUrl"
-                            value={formData.imageUrl}
+                            value={formData.imageUrl.join("\n")}
                             onChange={handleChangeImagen}
                             onFocus={() => setIsImageUrlFocused(true)}
                             onBlur={() => setIsImageUrlFocused(false)}
@@ -1235,10 +1274,12 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                           )}
                           {isImageUrlValid && formData.imageUrl && (
                             <div className="">
-                              <img src={formData.imageUrl[0]} alt="Imagen" />
+                              {formData.imageUrl.map((image, index) => (
+                                <img key={index} src={image} alt={image} />
+                              ))}
                             </div>
                           )}
-                        </div>{" "}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -1257,7 +1298,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               <input
                                 type="text"
                                 id="motor"
-                                name={formData.fichaTecnica.motor.toString()}
+                                name={formData.fichaTecnica.Motor.toString()}
                                 onChange={handleChangeMotor}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1270,7 +1311,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                                 type="number"
                                 min={0}
                                 id="pasajeros"
-                                name={formData.fichaTecnica.pasajeros.toString()}
+                                name={formData.fichaTecnica.Pasajeros.toString()}
                                 onChange={handleChangePasajeros}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1280,7 +1321,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               <input
                                 type="text"
                                 id="carroceria"
-                                name={formData.fichaTecnica.carroceria.toString()}
+                                name={formData.fichaTecnica.Carroceria.toString()}
                                 onChange={handleChangeCarroceria}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1290,7 +1331,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               <input
                                 type="text"
                                 id="transmision"
-                                name={formData.fichaTecnica.transmision.toString()}
+                                name={formData.fichaTecnica.Transmision.toString()}
                                 onChange={handleChangeTransmision}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1300,7 +1341,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                               <input
                                 type="text"
                                 id="traccion"
-                                name={formData.fichaTecnica.traccion.toString()}
+                                name={formData.fichaTecnica.Traccion.toString()}
                                 onChange={handleChangeTraccion}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1311,7 +1352,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                                 type="number"
                                 min={0}
                                 id="llantas"
-                                name={formData.fichaTecnica.llantas.toString()}
+                                name={formData.fichaTecnica.Llantas.toString()}
                                 onChange={handleChangeLlantas}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1322,7 +1363,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                                 type="number"
                                 min={0}
                                 id="potencia"
-                                name={formData.fichaTecnica.potencia.toString()}
+                                name={formData.fichaTecnica.Potencia.toString()}
                                 onChange={handleChangePotencia}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1333,7 +1374,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                                 type="number"
                                 min={0}
                                 id="puertas"
-                                name={formData.fichaTecnica.puertas.toString()}
+                                name={formData.fichaTecnica.Puertas.toString()}
                                 onChange={handleChangePuerta}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
@@ -1344,7 +1385,7 @@ const AddCars: React.FC<FormValues> = ({ brand }) => {
                                 type="number"
                                 min={0}
                                 id="baul"
-                                name={formData.fichaTecnica.baul.toString()}
+                                name={formData.fichaTecnica.Baul.toString()}
                                 onChange={handleChangeBaul}
                                 className="border border-gray-300 rounded px-4 py-2 mt-1 mb-2 focus:outline-none focus:border-blue-500"
                               />
