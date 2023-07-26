@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "@/components/nav/nav";
 import { ClerkProvider, SignedIn } from "@clerk/nextjs";
+import ShoppingCart from "@/components/shoppingCart/shoppingCart";
+import StateWrapper from "@/components/stateWrapper/stateWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 

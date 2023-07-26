@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Boxgold from "../boxgold/boxgold";
 import { UserButton } from "@clerk/nextjs";
+import ButtonCart from "../cart/cart";
+
 export default function Nav() {
   return (
     <main>
@@ -9,6 +11,7 @@ export default function Nav() {
         className="py-4  px-10 flex item-center fixed top-0 w-full justify-between bg-neutral-900 border-b-[3px] border-yellow-600 z-40 "
       >
         <div>
+          <a href="/home">
           <Image
             src="/logo_elixir_cars.png"
             alt="Elixir Logo"
@@ -17,12 +20,13 @@ export default function Nav() {
             height={56}
             priority
           />
+          </a>
         </div>
 
         <nav className="flex flex-grow justify-center">
           <ul className="flex text-sm [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:text-gray-50">
             <li>
-              <a href="">Usados Garantizados</a>
+              <a href="app/categoria-producto/usados">Usados Garantizados</a>
             </li>
             <li>
               <a href="/categoria-producto/0km">0 KM</a>
@@ -42,11 +46,7 @@ export default function Nav() {
           </ul>
         </nav>
         <nav>
-          <ul className="flex flex-grow [&>li>a]:text-gray-50">
-            <li>
-              <a href="">Aqui va el carrito de compras</a>
-            </li>
-          </ul>
+            <ButtonCart/>
         </nav>
         <div className="px-1">
           <UserButton afterSignOutUrl="/" />

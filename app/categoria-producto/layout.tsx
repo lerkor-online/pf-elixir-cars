@@ -1,5 +1,3 @@
-import Nav from "@/components/nav/nav";
-import Footer from "@/components/footer/Footer";
 
 const Layout = ({
     children,
@@ -9,8 +7,6 @@ const Layout = ({
     return (
       <div>
         {children}
-        <Nav/>
-        <Footer/>
       </div>
     );
   };

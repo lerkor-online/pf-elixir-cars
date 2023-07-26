@@ -60,7 +60,6 @@ export default async function Cerokm() {
             <img
               src={auto.imageUrl}
               className="dark:invert w-[260px] h-[206px]"
-              priority
               alt={auto.modelo}
                     />
             <div className='p-2'>

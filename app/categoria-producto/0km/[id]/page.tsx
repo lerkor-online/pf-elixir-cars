@@ -1,5 +1,6 @@
 import Image from "next/image";
 import arrayCars from '@/carsapi.json';
+import ButtonAddCart from "@/components/buttonCart/buttonCart";
 
 interface ParamsType {
   params: string;
@@ -19,6 +20,7 @@ const fetchCarDetail = (id : number) =>{
 export default async function CarDetail({ params }: ParamsType) {
   const { id }: any = params;
   const car = await fetchCarDetail(id)
+
   return (
     <div>
       <header className='h-20'></header>
@@ -27,13 +29,12 @@ export default async function CarDetail({ params }: ParamsType) {
           <div className='flex justify-center '>
             <img
               src={car.imageUrl}
-              alt="Elixir Logo"
+              alt="Car Img"
               className=" rounded-3xl shadow-2xl"
               width={400}
               height={400}
               priority
             />
-
           </div>
           <div>
             <h1 className='font-bold font-MiAvenirRegular text-5xl leading-16 flex items-center text-[#332F2E] m-0 uppercase'>{car.brand.name}</h1>
@@ -74,7 +75,8 @@ export default async function CarDetail({ params }: ParamsType) {
             </div>
             <div>
             </div>
-            <button className='bg-transparent text-black border-2 border-black mb-0 font-semibold font-arial text-base leading-4 tracking-normal p-3 w-28 rounded-md hover:bg-gradient-to-r from-yellow-800 to-yellow-500 shadow-2xl'>Comprar</button>
+            <button className='bg-transparent text-black border-2 border-black mb-0 font-semibold font-arial text-base leading-4 tracking-normal p-3 mr-3 w-28 rounded-md hover:bg-gradient-to-r from-yellow-800 to-yellow-500 shadow-2xl'>Comprar</button>
+            <ButtonAddCart car={car}/>            
             <div className='mt-3 text-sm text-gray-600'>Foto no contractual, el precio y equipamiento podrán variar sin previo aviso. No incluye gastos de flete y patentamiento.</div>
           </div>
         </div>
