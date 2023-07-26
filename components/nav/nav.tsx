@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Boxgold from "../boxgold/boxgold";
+import Boxgold from "@/components/boxgold/boxgold";
 import { UserButton } from "@clerk/nextjs";
 import ButtonCart from "../cart/cart";
 
@@ -35,6 +35,9 @@ export default function Nav() {
               <a href="">Vende tu Auto</a>
             </li>
             <li>
+              <a href="/create">Añadir Auto</a>
+            </li>
+            <li>
               <a href="">Servicios</a>
             </li>
             <li>
@@ -48,10 +51,10 @@ export default function Nav() {
         <nav>
             <ButtonCart/>
         </nav>
+        <Boxgold />
         <div className="px-1">
           <UserButton afterSignOutUrl="/" />
         </div>
-        <Boxgold />
       </header>
     </main>
   );

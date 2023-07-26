@@ -1,11 +1,27 @@
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { useUser } from "@clerk/clerk-react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 interface header {
-  onClickHandler: () => void;
+  onClickHandler: (e: any) => void;
 }
 
 const Header: React.FC<header> = ({ onClickHandler }) => {
   const router = useRouter();
+  const { user } = useUser();
+  const [sessionCookie, setSessionCookie] = useState<string | undefined>("");
+
+  useEffect(() => {
+    const sessionCookieValue = Cookies.get("__session");
+    console.log(sessionCookieValue);
+    if (sessionCookieValue) {
+      setSessionCookie(sessionCookieValue);
+    }
+  }, []);
+  console.log(sessionCookie);
+
   return (
     <header>
       <div
@@ -33,16 +49,18 @@ const Header: React.FC<header> = ({ onClickHandler }) => {
               </section>
               <section className="flex max-sm:flex-col justify-center gap-5">
                 <a href="/home">
-                <button
-                  onClick={onClickHandler}
-                  type="button"
-                  className="bg-[rgb(207,142,43)] hover:bg-[rgba(207,131,7,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full "
+                  <button
+                    onClick={onClickHandler}
+                    type="button"
+                    className="bg-[rgb(207,142,43)] hover:bg-[rgba(207,131,7,0.9)] active:scale-105 inline-block rounded border-2 px-10 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50  max-sm:rounded-full "
                   >
-                  Ingresar
-                </button>
-                  </a>
+                    Ingresar
+                  </button>
+                </a>
                 <button
-                  onClick={() => router.push("/sign-up")}
+                  onClick={() => {
+                    router.push("/sign-up");
+                  }}
                   type="button"
                   className="bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.11)] active:scale-105 inline-block rounded border-2 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 max-sm:rounded-full  "
                 >

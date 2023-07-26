@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="widgets_wrapper bg-neutral-900 border-t-[3px] border-yellow-600 text-white">
-
+>>>>>>> Stashed changes
         <div className="container mx-auto py-8 grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="column one-fourth">
             <aside className="widget_text widget widget_custom_html">
