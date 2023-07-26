@@ -364,14 +364,6 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     setIsAddingModel(selectedModel === "add");
     setIsSelectEnabled(selectedModel === "add");
     // fetchYears(selectedBrand, selectedModel)
-    console.log("Selected model:", selectedModel);
-    console.log("showAddBrandInput before:", showAddBrandInput);
-    console.log("showAddModelInput before:", showAddModelInput);
-
-    // Resto del código...
-
-    console.log("showAddBrandInput after:", showAddBrandInput);
-    console.log("showAddModelInput after:", showAddModelInput);
   };
 
   const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -677,7 +669,6 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     setNewBrand("");
     setSelectedState("");
     setNewVehicleBrand("");
-    // updateCombinedData("", "", "", "", {});
   };
 
   const handleCancelAddModel = () => {
@@ -686,7 +677,6 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     setNewModel("");
     setSelectedState("");
     setNewVehicleModel("");
-    // updateCombinedData("", "", "", "", {});
   };
 
   const handleCancelAddYear = () => {
