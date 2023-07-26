@@ -1,6 +1,7 @@
 /* eslint-disable quote-props */
 "use client";
 import React, { ChangeEvent, useState, useLayoutEffect, useRef } from "react";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 // interface FichaTecnica {
@@ -25,7 +26,7 @@ export interface CarData {
   year: number;
   imageUrl: string[];
   combustible: string;
-  kilometraje: number;
+  kilometraje: number | string;
   fichaTecnica: {
     Motor: string;
     Pasajeros: string;
@@ -68,11 +69,13 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
   // Variables para "Añadir un nuevo vehículo"
   const [newVehicleBrand, setNewVehicleBrand] = useState("");
   const [newVehicleModel, setNewVehicleModel] = useState("");
+  const [newVehicleYear, setNewVehicleYear] = useState("");
   const [newVehicleModelList, setNewVehicleModelList] = useState<
     Array<{ name: string }>
   >([]);
 
   const [selectedState, setSelectedState] = useState("");
+
   const [formData, setFormData] = useState<CarData>({
     marca: "",
     modelo: "",
@@ -81,7 +84,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     estado: "",
     year: 0,
     imageUrl: [],
-    kilometraje: 0,
+    kilometraje: "",
     combustible: "",
     fichaTecnica: {
       Motor: "",
@@ -171,7 +174,8 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     // Validación de propiedad kilometro
     const kilometrajeRegex = /^\d{0,6}$/;
     const validKilometraje = kilometrajeRegex.test(kilometraje.toString());
-    setIsKilometrajeValid(validKilometraje);
+    const validInput = kilometraje !== "" && validKilometraje;
+    setIsKilometrajeValid(validInput);
 
     // Validación de propiedad combustible
     const validCombustible = ["gasolina", "gasoil", "electrica"].includes(
@@ -183,10 +187,10 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     const imageUrlRegex =
       /(http|https|ftp|ftps):\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,3}(\/\S+)?\.(png|jpg|jpeg|gif)$/;
     const validImageUrl =
-      typeof imageUrl === "string"
-        ? imageUrlRegex.test(imageUrl)
-        : Array.isArray(imageUrl) &&
-          imageUrl.every((url) => imageUrlRegex.test(url)); // Validamos imageUrl como cadena de texto o como array
+      (typeof imageUrl === "string" && imageUrl !== "") ||
+      (Array.isArray(imageUrl) &&
+        imageUrl.length > 0 &&
+        imageUrl.every((url) => imageUrlRegex.test(url)));
     setIsImageUrlValid(validImageUrl);
 
     // Validaciónes de formulario completo
@@ -292,39 +296,33 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     //   setNewBrand("add");
     //   return;
     // }
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      marca: selectedBrand === "add" ? "" : selectedBrand,
-    }));
 
     if (selectedBrand === "add") {
       setShowAddBrandInput(true);
-      setShowAddModelInput(true);
+      setShowAddModelInput(false);
       setNewModel("");
+      setNewVehicleModel("");
       setSelectedState("");
     } else {
       setShowAddBrandInput(false);
-      setShowAddModelInput(false);
       setNewBrand(selectedBrand);
+      setNewVehicleModel("");
       setSelectedState("");
     }
 
     setInventoryBrand(selectedBrand);
     setNewVehicleBrand(selectedBrand);
 
-    setSelectedBrand("");
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      marca: selectedBrand === "add" ? "" : selectedBrand,
+    }));
+    setNewVehicleModel("");
     setSelectedYear("");
+    setNewBrand("");
 
+    setIsSelectEnabled(selectedBrand === "add");
     fetchModels(selectedBrand);
-    console.log("Selected brand:", selectedBrand);
-    console.log("showAddBrandInput before:", showAddBrandInput);
-    console.log("showAddModelInput before:", showAddModelInput);
-
-    // Resto del código...
-
-    console.log("showAddBrandInput after:", showAddBrandInput);
-    console.log("showAddModelInput after:", showAddModelInput);
-    // updateCombinedData(selectedBrand, "", "", "", {});
   };
 
   const handleChangeModels = (e: ChangeEvent<HTMLInputElement>) => {
@@ -344,12 +342,11 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
 
     if (selectedModel === "add") {
       setShowAddModelInput(true);
-      setShowAddYearInput(true);
+      setShowAddYearInput(false);
       setNewModel("");
       setSelectedState("");
     } else {
       setShowAddModelInput(false);
-      setShowAddYearInput(false);
       setNewModel(selectedModel);
       setSelectedState("");
     }
@@ -382,6 +379,8 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
 
     console.log(selectedValue);
 
+    setNewVehicleYear(selectedValue);
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       year: Number(selectedValue),
@@ -389,15 +388,15 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
   };
 
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedValue = e.target.value;
-    console.log(selectedValue);
+    const selectedYear = e.target.value;
+    console.log(selectedYear);
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      year: Number(selectedValue),
+      year: Number(selectedYear),
     }));
 
-    setNewYear(selectedValue);
+    setNewYear(selectedYear);
   };
 
   const handleStateSelection = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -457,7 +456,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     const { value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      kilometraje: Number(value),
+      kilometraje: value,
     }));
   };
 
@@ -577,6 +576,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
       },
     }));
   };
+
   const handleChangeAirbag = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     console.log(value);
@@ -587,6 +587,87 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
         airbag: value,
       },
     }));
+  };
+
+  const handleNewVehicleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(e.target);
+
+    const jsonData = JSON.stringify(formData);
+    console.log(jsonData);
+
+    Swal.fire({
+      title: "¿Deseas publicar tu auto?",
+      text: "Al presionar PUBLICAR se publicará tu auto.",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "PUBLICAR",
+      cancelButtonText: "CANCELAR",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.post(
+            "http://localhost:3001/cars",
+            jsonData,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          Swal.fire({
+            title: "Publicación exitosa",
+            text: "El auto se ha publicado correctamente.",
+            icon: "success",
+          });
+          console.log(response.data);
+
+          // Limpio los campos después de confirmar
+          setNewBrand("");
+          setNewModel("");
+          setNewYear("");
+          setShowAddBrandInput(false);
+          setShowAddModelInput(false);
+          setShowAddYearInput(false);
+          setNewVehicleBrand("");
+          setNewVehicleModel("");
+          setSelectedState("");
+          setFormData({
+            marca: "",
+            modelo: "",
+            presentacion: "",
+            precio: 0,
+            estado: "",
+            year: 0,
+            imageUrl: [""],
+            kilometraje: 0,
+            combustible: "",
+            fichaTecnica: {
+              Motor: "",
+              Pasajeros: "",
+              Carroceria: "",
+              Transmision: "",
+              Traccion: "",
+              Llantas: "",
+              Potencia: "",
+              Puertas: "",
+              Baul: "",
+              airbag: "",
+            },
+          });
+          console.log("Nueva marca de vehículo:", newVehicleBrand);
+          console.log("Nuevo modelo de vehículo:", newVehicleModel);
+        } catch (error) {
+          Swal.fire({
+            title: "Error al publicar el auto",
+            text: "Se ah producido un error al enviar los datos del auto.",
+            icon: "error",
+          });
+          console.error(error);
+        }
+      }
+    });
   };
 
   const handleCancelAddBrand = () => {
@@ -611,86 +692,89 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
   const handleCancelAddYear = () => {
     setShowAddYearInput(false);
     setNewYear("");
-    // updateCombinedData("", "", "", "", {});
+    setSelectedState("");
+    setNewVehicleYear("");
+    setFormData((prevData) => ({
+      ...prevData,
+      year: 0,
+    }));
   };
 
   const handleInventorySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(e.target);
-
-    // const jsonData = JSON.stringify(combinedData);
-
-    // axios
-    //   .post("http://localhost:3001/cars?stock=value", jsonData, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    // Envío el formulario de "Añadir al inventario"
-    console.log("Marca seleccionada para el inventario:", inventoryBrand);
-    console.log("Modelo seleccionado para el inventario:", inventoryModel);
+    //   e.preventDefault();
+    //   console.log(e.target);
+    //   // const jsonData = JSON.stringify(combinedData);
+    //   // axios
+    //   //   .post("http://localhost:3001/cars?stock=value", jsonData, {
+    //   //     headers: {
+    //   //       "Content-Type": "application/json",
+    //   //     },
+    //   //   })
+    //   //   .then((response) => {
+    //   //     console.log(response.data);
+    //   //   })
+    //   //   .catch((error) => {
+    //   //     console.error(error);
+    //   //   });
+    //   // Envío el formulario de "Añadir al inventario"
+    //   console.log("Marca seleccionada para el inventario:", inventoryBrand);
+    //   console.log("Modelo seleccionado para el inventario:", inventoryModel);
   };
 
-  const handleNewVehicleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(e.target);
+  // const handleNewVehicleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log(e.target);
 
-    const jsonData = JSON.stringify(formData);
-    console.log(jsonData);
-    axios
-      .post("http://localhost:3001/cars", jsonData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    // Envio el formulario de "Añadir un nuevo vehículo"
-    setNewBrand("");
-    setNewModel("");
-    setNewYear("");
-    setShowAddBrandInput(false);
-    setShowAddModelInput(false);
-    setShowAddYearInput(false);
-    setNewVehicleBrand("");
-    setNewVehicleModel("");
-    setSelectedState("");
-    setFormData({
-      marca: "",
-      modelo: "",
-      presentacion: "",
-      precio: 0,
-      estado: "",
-      year: 0,
-      imageUrl: [""],
-      kilometraje: 0,
-      combustible: "",
-      fichaTecnica: {
-        Motor: "",
-        Pasajeros: "",
-        Carroceria: "",
-        Transmision: "",
-        Traccion: "",
-        Llantas: "",
-        Potencia: "",
-        Puertas: "",
-        Baul: "",
-        airbag: "",
-      },
-    });
-    console.log("Nueva marca de vehículo:", newVehicleBrand);
-    console.log("Nuevo modelo de vehículo:", newVehicleModel);
-  };
+  //   const jsonData = JSON.stringify(formData);
+  //   console.log(jsonData);
+  //   axios
+  //     .post("http://localhost:3001/cars", jsonData, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  //   // Envio el formulario de "Añadir un nuevo vehículo"
+  //   setNewBrand("");
+  //   setNewModel("");
+  //   setNewYear("");
+  //   setShowAddBrandInput(false);
+  //   setShowAddModelInput(false);
+  //   setShowAddYearInput(false);
+  //   setNewVehicleBrand("");
+  //   setNewVehicleModel("");
+  //   setSelectedState("");
+  //   setFormData({
+  //     marca: "",
+  //     modelo: "",
+  //     presentacion: "",
+  //     precio: 0,
+  //     estado: "",
+  //     year: 0,
+  //     imageUrl: [""],
+  //     kilometraje: 0,
+  //     combustible: "",
+  //     fichaTecnica: {
+  //       Motor: "",
+  //       Pasajeros: "",
+  //       Carroceria: "",
+  //       Transmision: "",
+  //       Traccion: "",
+  //       Llantas: "",
+  //       Potencia: "",
+  //       Puertas: "",
+  //       Baul: "",
+  //       airbag: "",
+  //     },
+  //   });
+  //   console.log("Nueva marca de vehículo:", newVehicleBrand);
+  //   console.log("Nuevo modelo de vehículo:", newVehicleModel);
+  // };
 
   return (
     <div className="mt-16 min-w-full flex-col items-center bg-slate-50 text-gray-600 body-font h730:mt-144 h742:mt-120 h935:mt-100 hdm:mt-20 lg:mt-16 xl:mt-16 2xl:mt-16">
@@ -938,6 +1022,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                           </div>
                         )}
                         <button
+                          type="button"
                           onClick={handleCancelAddBrand}
                           className="w-8 h-[42px] py-2 mr-4 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
                         >
@@ -971,7 +1056,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                       </select>
                     )}
 
-                    {showAddYearInput ? (
+                    {showAddModelInput ? (
                       <div className="flex flex-row items-center relative">
                         <input
                           type="text"
@@ -996,6 +1081,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                           </div>
                         )}
                         <button
+                          type="button"
                           onClick={handleCancelAddModel}
                           className="w-8 h-[42px] py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
                         >
@@ -1026,10 +1112,10 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                       </select>
                     )}
 
-                    {showAddYearInput ? (
+                    {showAddModelInput || showAddYearInput ? (
                       <div className="flex flex-row items-center relative">
                         <input
-                          type="text"
+                          type="number"
                           value={newYear}
                           onChange={handleYearChange}
                           placeholder="Año del vehículo"
@@ -1044,11 +1130,12 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                           }`}
                         />
                         {!isYearValid && isYearFocused && (
-                          <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm">
+                          <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm z-10">
                             Por favor, ingresa un año válido.
                           </div>
                         )}
                         <button
+                          type="button"
                           onClick={handleCancelAddYear}
                           className="w-8 h-[42px] py-2 mr-2 bg-gray-300 border border-gray-300 text-white rounded-e-lg flex items-center justify-center transition duration-300 hover:bg-red-500"
                         >
@@ -1056,42 +1143,35 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                         </button>
                       </div>
                     ) : (
-                      <div className="w-fit">
-                        <select
-                          className="border border-gray-300 rounded w-fit px-4 py-2 my-4 mx-2"
-                          value={selectedYear}
-                          onChange={(e) => {
-                            if (e.target.value === "add") {
-                              setShowAddModelInput(true);
-                            } else {
-                              handleYearSelection(e);
-                            }
-                          }}
-                          disabled={
-                            !newVehicleBrand ||
-                            !newVehicleModel ||
-                            isAddingBrand
+                      <select
+                        className="border border-gray-300 rounded w-fit px-4 py-2 my-4 mx-2"
+                        value={newVehicleYear}
+                        onChange={(e) => {
+                          if (e.target.value === "add") {
+                            setShowAddYearInput(true);
+                          } else {
+                            handleYearSelection(e);
                           }
-                        >
-                          <option className="m-1 " value="">
-                            Selecciona el Año
-                          </option>
-                          {Array.isArray(formData) &&
-                            formData.map((element, index) => (
-                              <option key={index} value={element.year}>
-                                {element.year}
-                              </option>
-                            ))}
-                          <option className="text-blue-500" value="add">
-                            Agregar Año
-                          </option>
-                        </select>
-                      </div>
+                        }}
+                        disabled={!newVehicleModel || isAddingBrand}
+                      >
+                        <option className="m-1 " value="">
+                          Selecciona el Año
+                        </option>
+                        {Array.isArray(formData) &&
+                          formData.map((element, index) => (
+                            <option key={index} value={element.year}>
+                              {element.year}
+                            </option>
+                          ))}
+                        <option className="text-blue-500" value="add">
+                          Agregar Año
+                        </option>
+                      </select>
                     )}
 
                     <div className="relative">
                       <select
-                        ref={selectRef}
                         value={selectedState}
                         onChange={handleStateSelection}
                         disabled={
@@ -1122,7 +1202,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                         ) : null}
                       </select>
                       {isSelectHovered && !selectedState && !isSelectActive && (
-                        <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 m-2 bg-red-500/90 text-white text-sm">
+                        <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-1.4rem] px-2 py-1 m-2 bg-red-500/90 text-white text-sm z-10">
                           Por favor, selecciona un estado válido.
                         </div>
                       )}
@@ -1133,6 +1213,9 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                     {newVehicleBrand && newVehicleModel && (
                       <div className="flex flex-row items-center justify-center">
                         <div className="w-200 p-8 bg-white rounded shadow-lg flex-grow flex-shrink">
+                          <h2 className="text-2xl text-center font-bold mb-4">
+                            INFORMACIÓN
+                          </h2>
                           <div className="grid grid-cols-2 gap-4">
                             <div className="flex flex-col mt-2 mx-2 relative">
                               <label htmlFor="presentacion">
@@ -1197,7 +1280,6 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                               <label htmlFor="kilometraje">Kilometraje:</label>
                               <input
                                 type="number"
-                                min={0}
                                 id="kilometraje"
                                 name={formData.kilometraje.toString()}
                                 onChange={handleChangeKilometraje}
@@ -1249,7 +1331,10 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                             </div>
                           </div>
                         </div>
-                        <div className="w-200 h-full ml-2 p-8 bg-white rounded shadow-lg flex-grow flex-shrink relative">
+                        <div className="max-w-[300px] min-w-[300px] max-h-[300px] min-h-[300px] ml-2 p-2 bg-white rounded shadow-lg flex-grow flex-shrink relative">
+                          <h2 className="text-2xl text-center font-bold mb-1">
+                            IMAGEN
+                          </h2>
                           <input
                             type="text"
                             name="imageUrl"
@@ -1257,7 +1342,7 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                             onChange={handleChangeImagen}
                             onFocus={() => setIsImageUrlFocused(true)}
                             onBlur={() => setIsImageUrlFocused(false)}
-                            className={`relative border border-gray-300 rounded  px-4 py-2 mt-1 mb-2  ${
+                            className={`relative border border-gray-300 rounded w-full px-4 py-2 mt-1 mb-2  ${
                               !isImageUrlValid && !isImageUrlFocused
                                 ? "border-red-500"
                                 : isImageUrlValid && !isImageUrlFocused
@@ -1266,16 +1351,21 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
                             }`}
                           />
                           {!isImageUrlValid && isImageUrlFocused && (
-                            <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-0.8rem] px-2 py-1 mr-2 bg-red-500/90 text-white text-sm z-10">
+                            <div className="absolute rounded-sm top-[calc(100%+0.5rem)] left-0 mt-[-13.5rem] px-2 py-1 mx-2 bg-red-500/90 text-white text-sm z-10">
                               Por favor, ingresa una URL válida de una imagen
                               (formatos compatibles: gif, jpeg, jpg, tiff, png,
                               webp, bmp).
                             </div>
                           )}
                           {isImageUrlValid && formData.imageUrl && (
-                            <div className="">
+                            <div className="max-w-full max-h-[200px] rounded-sm shadow-lg flex-grow flex-shrink">
                               {formData.imageUrl.map((image, index) => (
-                                <img key={index} src={image} alt={image} />
+                                <img
+                                  key={index}
+                                  src={image}
+                                  alt={image}
+                                  className="w-full max-h-[195px] object-cover rounded-sm"
+                                />
                               ))}
                             </div>
                           )}
