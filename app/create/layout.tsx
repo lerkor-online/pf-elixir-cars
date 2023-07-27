@@ -1,5 +1,3 @@
-import Nav from "@/components/nav/nav";
-import Footer from "@/components/footer/Footer";
 import CarouselMarca from "./carouselMarca";
 
 interface Props {
