@@ -7,7 +7,8 @@ const fetchCars = () => {
     next: {
       revalidate: 10,
     },
-  }).then((res) => res.json());
+  }).then((res) => res.json())
+  .then(response => response.data);
 };
 
 /* async function getData() {

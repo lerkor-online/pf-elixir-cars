@@ -1,5 +1,6 @@
 import Image from "next/image";
 import arrayCars from "@/carsapi.json";
+import ButtonAddCart from "@/components/buttonCart/buttonCart";
 
 interface ParamsType {
   params: string;
@@ -78,13 +79,6 @@ export default async function CarDetail({ params }: ParamsType) {
               </div>
             </div>
             <div></div>
-            <button className="bg-transparent text-black border-2 border-black mb-0 font-semibold font-arial text-base leading-4 tracking-normal p-3 w-28 rounded-md hover:bg-gradient-to-r from-yellow-800 to-yellow-500 shadow-2xl">
-              Comprar
-            </button>
-            <div className="mt-3 text-sm text-gray-600">
-              Foto no contractual, el precio y equipamiento podrán variar sin
-              previo aviso. No incluye gastos de flete y patentamiento.
-            </div>
             <button className='bg-transparent text-black border-2 border-black mb-0 font-semibold font-arial text-base leading-4 tracking-normal p-3 mr-3 w-28 rounded-md hover:bg-gradient-to-r from-yellow-800 to-yellow-500 shadow-2xl'>Comprar</button>
             <ButtonAddCart car={car}/>            
             <div className='mt-3 text-sm text-gray-600'>Foto no contractual, el precio y equipamiento podrán variar sin previo aviso. No incluye gastos de flete y patentamiento.</div>
@@ -221,7 +215,7 @@ export default async function CarDetail({ params }: ParamsType) {
               height={50}
               priority
             />
-            {car.fichaTecnica?.Airbag}
+            {car.fichaTecnica?.airbag}
           </p>
           <p>Airbags</p>
         </div>
