@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { useState, useEffect } from "react";
 import Card from "@/components/Card/Card";
 import Paginate from "@/components/Paginate/Paginate";
+import Filters from "@/components/Filters/Filters";
 
 interface Auto {
   id: number;
@@ -69,8 +70,8 @@ const Cerokm: NextPage = () => {
     <div className="flex flex-col items-center">
       <div className="flex justify-center">
         {showFilters && (
-          <div className="relative w-1/4 bg-gray-100 p-4">
-            {/* Aquí van los controles de los filtrado */}
+          <div className="relative w-1/4 bg-gray-100 p-4 border shadow-md">
+            <Filters />
             <button
               className="floating-button h-12 w-6 absolute left-0 top-1/2 transform -translate-y-1/2 rounded-e-xl bg-gray-500 hover:bg-[#FFD700] hover:text-black items-center justify-center transition duration-300 ease-in-out"
               onClick={handleToggleFilters}
@@ -102,8 +103,8 @@ const Cerokm: NextPage = () => {
           )}
         </div>
       </div>
-      <div className="flex justify-center items-center mt-20">
-        <div className="flex items-center space-x-2">
+      <div className="flex justify-center items-center w-full h-20 bg-neutral-900 ">
+        <div className="flex items-center space-x-2 w-full bg-neutral-900">
           <Paginate
             currentPage={currentPage}
             totalPages={totalPages}
