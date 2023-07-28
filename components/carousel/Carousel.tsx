@@ -19,7 +19,7 @@ const Carousel: React.FC<carousel> = ({ images }) => {
     const isLastSlide = currentIndex === images.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-  };
+  }; 
 
   const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
