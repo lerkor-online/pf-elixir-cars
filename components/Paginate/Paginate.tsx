@@ -52,6 +52,7 @@ function Paginate({ currentPage, totalPages, onPageChange }: PaginateProps) {
 
     return pages;
   }
+
   return (
     <div className="flex flex-row pb-2 m-auto justify-center items-center text-black">
       <div className="flex items-center space-x-2">

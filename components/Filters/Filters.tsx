@@ -22,7 +22,7 @@ const Filters = () => {
         ></select>
       </div>
       <div>
-        <label>Car Model:</label>
+        <label>Model:</label>
         <select
           value={carModel}
           onChange={(e) => setCarModel(e.target.value)}
@@ -36,7 +36,7 @@ const Filters = () => {
         ></select>
       </div>
       <div>
-        <button>Apply Filters</button>
+        <button>Aplicar Filtros</button>
       </div>
     </div>
   );

@@ -31,6 +31,7 @@ const Cerokm: NextPage = () => {
       const response = await fetch(
         `http://localhost:3001/cars?page=${currentPage}`
       );
+
       const jsonData = await response.json();
       setTotalPages(jsonData.totalPages);
       console.log(jsonData.totalPages);
@@ -55,6 +56,7 @@ const Cerokm: NextPage = () => {
     // console.log(page);
     setCurrentPage(page);
   };
+
   const handleToggleFilters = () => {
     setShowFilters((prevShowFilters) => {
       setFilterButtonSymbol(prevShowFilters ? "▶" : "◀");
