@@ -237,14 +237,11 @@ const AddCars: React.FC<CarData> = ({ marca }) => {
     try {
       const response =
         brandName !== "add"
-          ? await fetch(
-              `http://localhost:3001/carModels/byBrand?brand=${brandName}`,
-              {
-                next: {
-                  revalidate: 10,
-                },
-              }
-            )
+          ? await fetch(`http://localhost:3001/carModels?brand=${brandName}`, {
+              next: {
+                revalidate: 10,
+              },
+            })
           : null;
 
       console.log(response);

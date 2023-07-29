@@ -63,7 +63,7 @@ const Card: React.FC<CardProps> = ({ auto }) => {
       style={{ transition: "transform 0.3s" }}
     >
       <img
-        src={auto.imageUrl}
+        src={auto.imageUrl[0]}
         className="w-[260px] h-[206px]"
         alt={auto.modelo}
       />
